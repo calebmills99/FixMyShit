@@ -1,19 +1,23 @@
 # First, install the Azure AI SDK
-# pip install azure-ai-foundry
+# pip install azure-ai-projects azure-identity
 
-from azure.ai.foundry import AIFoundryClient
+import os
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+# Set up your project endpoint
+project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
 
 # Initialize client
-project_client = AIFoundryClient(
-    subscription_id="831ed202-1c08-4b14-91eb-19ee3e5b3c78",
-    resource_group="guardr",
-    project_name="midnight"
+project_client = AIProjectClient(
+    endpoint=project_endpoint,
+    credential=DefaultAzureCredential(),
 )
 
 # Deploy your agent
 agent = project_client.agents.create_agent(
     model="gpt-4o",  # Your deployment name
-    name="midnight",  # Your agent name
+    name="mmidnight",  # Your agent name
     instructions="""You are a Windows 11 system repair specialist focused on fixing service dependencies and system errors. 
     You have access to ESET System Inspector logs and can analyze system crashes."""
 )
