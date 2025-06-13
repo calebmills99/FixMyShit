@@ -1,0 +1,8 @@
+# Azure AI Project
+.env
+*.key
+azure-ai-env/
+__pycache__/
+*.pyc
+.vscode/
+local.settings.json

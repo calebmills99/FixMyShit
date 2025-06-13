@@ -1,0 +1,918 @@
+
+# 2025-06-13 08:47:36.479574
++y
+
+# 2025-06-13 09:31:04.599908
++URGENT: Malwarebytes just found and quarantined:
++- Backdoor.Agent.E in C:\PROGRAMDATA\MICROSOFT\WINDOWS\START MENU\PROGRAMS\STARTUP\APP.LNK
++- Trojan.Tasker in Windows Task Scheduler (3 registry entries)
++- These were quarantined but Explorer is still broken
++
++The malware likely corrupted shell components. Please:
++1. Check for any remaining malware artifacts
++2. Verify all startup locations are clean
++3. Re-register all shell components that the malware may have damaged
++4. Create a script to fully restore Explorer functionality
++
++Also analyze C:\caleb\systeminfo\systeminfo.json for additional damage.
+
+# 2025-06-13 09:31:26.742618
++y
+
+# 2025-06-13 09:31:34.638604
++A
+
+# 2025-06-13 09:31:43.366517
++yes
+
+# 2025-06-13 09:31:43.379787
++/run powershell -ExecutionPolicy Bypass -File C:\FixMyShit\restore_explorer.ps1
+
+# 2025-06-13 09:31:43.381785
++/run powershell -ExecutionPolicy Bypass -File C:\FixMyShit\restore_explorer.ps1
+
+# 2025-06-13 09:31:47.694099
++yes
+
+# 2025-06-13 09:32:46.551721
++pwd for that scriipt?
+
+# 2025-06-13 09:34:36.353382
++n
+
+# 2025-06-13 09:34:39.106594
++PS C:\FixMyShit> .\restore_explorer.ps1
++Checking startup locations...
++Suspicious file found: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk
++Remove-Item: C:\FixMyShit\restore_explorer.ps1:13
++Line |
++  13 |              Remove-Item -Path $_.FullName -Force
++     |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Access to the path 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk' is denied.
++Suspicious file found: C:\Users\caleb.SLAY_STATION\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Ollama.lnk
++Checking registry startup entries...
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:27
++Line |
++  27 |          Remove-ItemProperty -Path $path -Name $_.PSChildName -Force
++     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Requested registry access is not allowed.
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:27
++Line |
++  27 |          Remove-ItemProperty -Path $path -Name $_.PSChildName -Force
++     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Property Run does not exist at path HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run.
++Re-registering shell components...
++Re-registering explorer.exe...
++Re-registering shell32.dll...
++Re-registering ole32.dll...
++Re-registering oleaut32.dll...
++Re-registering actxprxy.dll...
++Re-registering shdocvw.dll...
++Re-registering browseui.dll...
++Re-registering mshtml.dll...
++Restarting Explorer...
++Explorer restored successfully.
++PS C:\FixMyShit>
+
+# 2025-06-13 09:34:46.189879
++/run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\FixMyShit\restore_explorer.ps1
+
+# 2025-06-13 09:34:46.192879
++/run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\FixMyShit\restore_explorer.ps1
+
+# 2025-06-13 09:34:50.793819
++yes
+
+# 2025-06-13 09:35:38.515099
++Set-Location: A positional parameter cannot be found that accepts argument 'Files\ESET\ESET'.
++PS C:\Windows\System32> cd 'C:\Program Files\ESET\ESET Security'
++PS C:\Program Files\ESET\ESET Security> dir
++
++    Directory: C:\Program Files\ESET\ESET Security
++
++Mode                 LastWriteTime         Length Name
++----                 -------------         ------ ----
++d----           6/12/2025  4:40 AM                Drivers
++d----           6/12/2025  4:40 AM                Help
++d----           6/13/2025  8:44 AM                Modules
++d----           6/12/2025 10:03 AM                x86
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-console-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-console-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-datetime-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30224 api-ms-win-core-debug-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-core-errorhandling-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-fibers-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-fibers-l1-1-1.dll
++-a---           4/28/2025 10:20 AM          34424 api-ms-win-core-file-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-file-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30240 api-ms-win-core-file-l2-1-0.dll
++-a---           4/28/2025 10:20 AM          30224 api-ms-win-core-handle-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-heap-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-interlocked-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30360 api-ms-win-core-kernel32-legacy-l1-1-1.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-libraryloader-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30360 api-ms-win-core-localization-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-memory-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-core-namedpipe-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30240 api-ms-win-core-processenvironment-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-core-processthreads-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-processthreads-l1-1-1.dll
++-a---           4/28/2025 10:20 AM          30352 api-ms-win-core-profile-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30240 api-ms-win-core-rtlsupport-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-string-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-synch-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30352 api-ms-win-core-synch-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-sysinfo-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30360 api-ms-win-core-sysinfo-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-timezone-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30224 api-ms-win-core-util-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-crt-conio-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          34328 api-ms-win-crt-convert-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30360 api-ms-win-crt-environment-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-crt-filesystem-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-crt-heap-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30352 api-ms-win-crt-locale-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          38520 api-ms-win-crt-math-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          38520 api-ms-win-crt-multibyte-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          83608 api-ms-win-crt-private-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-crt-process-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          34424 api-ms-win-crt-runtime-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          34440 api-ms-win-crt-stdio-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          34456 api-ms-win-crt-string-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-crt-time-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30224 api-ms-win-crt-utility-l1-1-0.dll
++-a---           6/12/2025  4:41 AM         503264 BrowserPrivacyAndSecurity.exe
++-a---           4/28/2025  2:52 PM         177008 callmsi.exe
++-a---           6/12/2025  4:41 AM         295192 CertImporter-1687.exe
++-a---           4/28/2025  2:49 PM        1332080 cfgres.dll
++-a---           4/28/2025 10:20 AM         321136 concrt140.dll
++-a---           4/28/2025  2:51 PM         318832 DMON.dll
++-a---           4/28/2025  1:48 PM         401784 eamsi.dll
++-a---           6/12/2025  4:41 AM         296552 ebehmoni.dll
++-a---           6/12/2025  4:41 AM          18552 ebehmonl.dll
++-a---           4/28/2025  2:51 PM         274288 eCapture.exe
++-a---           4/28/2025  2:52 PM         860528 ecls.exe
++-a---           4/28/2025  2:48 PM         424304 eclsLang.dll
++-a---           4/28/2025  2:52 PM         291552 ecmd.exe
++-a---           4/28/2025  2:52 PM         292064 ecmds.exe
++-a---           4/28/2025  2:53 PM         483184 eComServer.exe
++-a---           4/28/2025  2:55 PM        1115504 edb.dll
++-a---           4/28/2025  2:52 PM         247664 eeclnt.exe
++-a---           4/28/2025  3:37 PM        5559152 efwd.exe
++-a---           4/28/2025  3:18 PM        8103792 egui.exe
++-a---           4/28/2025  2:53 PM        1671536 eguiActivation.dll
++-a---           4/28/2025  2:48 PM        3128176 eguiActivationLang.dll
++-a---           4/28/2025  2:57 PM          46960 eguiAmon.dll
++-a---           4/28/2025  2:53 PM         280944 eguiAntitheft.dll
++-a---           4/28/2025  2:48 PM         370032 eguiAntitheftLang.dll
++-a---           4/28/2025  2:51 PM         597360 eguiDemeter.dll
++-a---           4/28/2025  2:48 PM         222576 eguiDemeterLang.dll
++-a---           4/28/2025  2:57 PM         120688 eguiDevmon.dll
++-a---           4/28/2025  2:48 PM         100208 eguiDevmonLang.dll
++-a---           4/28/2025  2:52 PM          47984 eguiDmon.dll
++-a---           4/28/2025  2:55 PM        1220464 eguiEpfw.dll
++-a---           4/28/2025  2:48 PM        1068912 eguiEpfwLang.dll
++-a---           4/28/2025  2:53 PM          45424 eguiEpfwp.dll
++-a---           4/28/2025  3:01 PM         394096 eguiHips.dll
++-a---           4/28/2025  2:48 PM         501104 eguiHipsLang.dll
++-a---           4/28/2025  2:58 PM         328560 eguiIPM.dll
++-a---           4/28/2025  2:48 PM          33648 eguiIPMLang.dll
++-a---           4/28/2025  2:48 PM        5722992 eguiLang.dll
++-a---           4/28/2025  2:56 PM         100720 eguiMailPlugins.dll
++-a---           4/28/2025  3:03 PM         108912 eguiOnlineHelp.dll
++-a---           4/28/2025  3:20 PM          32624 eguiOnlineHelpLang.dll
++-a---           4/28/2025  2:53 PM         263024 eguiParental.dll
++-a---           4/28/2025  2:48 PM         136048 eguiParentalLang.dll
++-a---           4/28/2025  3:11 PM        1777520 eguiProduct.dll
++-a---           4/28/2025  3:05 PM        1253232 eguiProxy.exe
++-a---           4/28/2025  2:48 PM         150896 eguiProxyLang.dll
++-a---           4/28/2025  3:04 PM         769392 eguiScan.dll
++-a---           4/28/2025  2:48 PM         500592 eguiScanLang.dll
++-a---           4/28/2025  3:00 PM         565616 eguiUpdate.dll
++-a---           4/28/2025  2:48 PM         472432 eguiUpdateLang.dll
++-a---           4/28/2025  3:11 PM        4582480 ekrn.exe
++-a---           4/28/2025  2:59 PM         830320 ekrnAmon.dll
++-a---           4/28/2025  2:48 PM         202096 ekrnAmonLang.dll
++-a---           4/28/2025  3:00 PM         951664 ekrnAntitheft.dll
++-a---           4/28/2025  2:48 PM         153456 ekrnAntitheftLang.dll
++-a---           4/28/2025  2:59 PM         580464 ekrnCerberus.dll
++-a---           4/28/2025  2:48 PM          39792 ekrnCerberusLang.dll
++-a---           4/28/2025  2:59 PM         304496 ekrnDemeter.dll
++-a---           4/28/2025  2:48 PM          81776 ekrnDemeterLang.dll
++-a---           4/28/2025  3:00 PM        1387376 ekrnDevmon.dll
++-a---           4/28/2025  2:48 PM         330096 ekrnDevmonLang.dll
++-a---           4/28/2025  2:59 PM         291184 ekrnDmon.dll
++-a---           4/28/2025  2:48 PM          72048 ekrnDmonLang.dll
++-a---           4/28/2025  3:02 PM         807792 ekrnEcp.dll
++-a---           4/28/2025  2:57 PM         524144 ekrnEdtd.dll
++-a---           4/28/2025  3:00 PM        1629040 ekrnEpfw.dll
++-a---           4/28/2025  2:48 PM         917360 ekrnEpfwLang.dll
++-a---           4/28/2025  3:03 PM         393584 ekrnEpns.dll
++-a---           4/28/2025  3:00 PM         568688 ekrnHips.dll
++-a---           4/28/2025  2:48 PM         136048 ekrnHipsLang.dll
++-a---           4/28/2025  2:59 PM        1103728 ekrnIPM.dll
++-a---           4/28/2025  3:20 PM         370544 ekrnLang.dll
++-a---           4/28/2025  3:03 PM        1898864 ekrnLicensing.dll
++-a---           4/28/2025  3:20 PM         417648 ekrnLicensingLang.dll
++-a---           4/28/2025  3:03 PM         802672 ekrnMailPlugins.dll
++-a---           4/28/2025  2:48 PM         117104 ekrnMailPluginsLang.dll
++-a---           4/28/2025  2:59 PM         590192 ekrnOPP.dll
++-a---           4/28/2025  2:48 PM         141680 ekrnOppLang.dll
++-a---           4/28/2025  2:58 PM         335728 ekrnParental.dll
++-a---           4/28/2025  2:48 PM          77680 ekrnParentalLang.dll
++-a---           4/28/2025  2:59 PM         874864 ekrnScan.dll
++-a---           4/28/2025  2:48 PM          96624 ekrnScanLang.dll
++-a---           4/28/2025  3:02 PM         454000 ekrnScriptMon.dll
++-a---           4/28/2025  2:48 PM          67440 ekrnScriptMonLang.dll
++-a---           4/28/2025  3:11 PM        1570672 ekrnUpdate.dll
++-a---           4/28/2025  2:48 PM         695152 ekrnUpdateLang.dll
++-a---           4/28/2025  2:59 PM         628592 ekrnWebControl.dll
++-a---           4/28/2025  3:20 PM         243056 ekrnWebControlLang.dll
++-a---           6/12/2025 10:03 AM         734664 eOppBrowser.dll
++-a---           6/12/2025 12:04 PM         252384 eOppFrame.exe
++-a---           4/28/2025  2:48 PM         159088 eplgMailPluginsLang.dll
++-a---           4/28/2025  2:51 PM         780656 eplgOE.dll
++-a---           4/28/2025  2:52 PM        1514352 eplgOutlook.dll
++-a---           4/28/2025  3:15 PM         184384 EsetContextMenu.msix
++-a---           4/28/2025  2:52 PM         256368 eTpComm.dll
++-a---           4/28/2025  3:40 PM         968542 eula.cab
++-a---           6/12/2025  4:41 AM          46158 eula.html
++-a---           6/12/2025  4:41 AM          45732 eula.rtf
++-a---           4/28/2025  2:59 PM         417136 InstSuppEx.dll
++-a---           4/28/2025 10:20 AM          33944 msvcp140_1.dll
++-a---           4/28/2025 10:20 AM         266888 msvcp140_2.dll
++-a---           4/28/2025 10:20 AM          48264 msvcp140_atomic_wait.dll
++-a---           4/28/2025 10:20 AM          29848 msvcp140_codecvt_ids.dll
++-a---           4/28/2025 10:20 AM         575088 msvcp140.dll
++-a---           4/28/2025  3:40 PM          10709 NOTICE
++-a---           6/12/2025  4:40 AM          81842 NOTICE_mod
++-a---           4/28/2025  2:52 PM         545648 ProtobufLite.dll
++-a---           4/28/2025 10:20 AM        4224368 sciter-x.dll
++-a---           6/12/2025  4:40 AM            328 SecurityProductInformation.ini
++-a---           4/28/2025  2:56 PM         506736 shellExt.dll
++-a---           4/28/2025  3:21 PM         119152 ShellExtLang.dll
++-a---           4/28/2025  3:09 PM        4791152 SysInspector.exe
++-a---           4/28/2025  2:48 PM         620400 SysInspectorLang.dll
++-a---           6/12/2025  4:41 AM        2755952 tdt.dll
++-a---           4/28/2025  2:57 PM         200560 ToastNotify.dll
++-a---           4/28/2025 10:20 AM        1369720 ucrtbase.dll
++-a---           4/28/2025  2:53 PM        1696112 updater.dll
++-a---           4/28/2025 10:20 AM          47752 vcruntime140_1.dll
++-a---           4/28/2025 10:20 AM          36504 vcruntime140_threads.dll
++-a---           4/28/2025 10:20 AM         119448 vcruntime140.dll
++-a---           4/28/2025  9:52 AM         956624 windowsperformancerecordercontrol.dll
++
++PS C:\Program Files\ESET\ESET Security> .\SysInspector.exe
++PS C:\Program Files\ESET\ESET Security> cd C:\FixMyShit
++PS C:\FixMyShit> .\restore_explorer.ps1
++Checking startup locations...
++Suspicious file found: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk
++Remove-Item: C:\FixMyShit\restore_explorer.ps1:13
++Line |
++  13 |              Remove-Item -Path $_.FullName -Force
++     |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Access to the path 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk' is denied.
++Suspicious file found: C:\Users\caleb.SLAY_STATION\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Ollama.lnk
++Checking registry startup entries...
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:27
++Line |
++  27 |          Remove-ItemProperty -Path $path -Name $_.PSChildName -Force
++     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Requested registry access is not allowed.
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:27
++Line |
++  27 |          Remove-ItemProperty -Path $path -Name $_.PSChildName -Force
++     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Property Run does not exist at path HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run.
++Re-registering shell components...
++Re-registering explorer.exe...
++Re-registering shell32.dll...
++Re-registering ole32.dll...
++Re-registering oleaut32.dll...
++Re-registering actxprxy.dll...
++Re-registering shdocvw.dll...
++Re-registering browseui.dll...
++Re-registering mshtml.dll...
++Restarting Explorer...
++Explorer restored successfully.
++PS C:\FixMyShit> .\restore_explorer.ps1
++Checking startup locations...
++Suspicious file found: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk
++Remove-Item: C:\FixMyShit\restore_explorer.ps1:14
++Line |
++  14 |                  Remove-Item -Path $_.FullName -Force
++     |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Access to the path 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk' is denied.
++Checking registry startup entries...
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:32
++Line |
++  32 |              Remove-ItemProperty -Path $path -Name $_.PSChildName -For 
++     |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Requested registry access is not allowed.
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:32
++Line |
++  32 |              Remove-ItemProperty -Path $path -Name $_.PSChildName -For 
++     |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Property Run does not exist at path HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run.
++Re-registering shell components...
++Re-registering explorer.exe...
++Re-registering shell32.dll...
++Re-registering ole32.dll...
++Re-registering oleaut32.dll...
++Re-registering actxprxy.dll...
++Re-registering shdocvw.dll...
++Re-registering browseui.dll...
++Re-registering mshtml.dll...
++Restarting Explorer...
++Explorer restored successfully.
++PS C:\FixMyShit>
+
+# 2025-06-13 09:35:53.618471
++yes
+
+# 2025-06-13 09:35:53.632138
++/run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\FixMyShit\restore_explorer.ps1
+
+# 2025-06-13 09:35:53.635590
++/run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\FixMyShit\restore_explorer.ps1
+
+# 2025-06-13 09:37:23.627540
++Set-Location: A positional parameter cannot be found that accepts argument 'Files\ESET\ESET'.
++PS C:\Windows\System32> cd 'C:\Program Files\ESET\ESET Security'
++PS C:\Program Files\ESET\ESET Security> dir
++
++    Directory: C:\Program Files\ESET\ESET Security
++
++Mode                 LastWriteTime         Length Name
++----                 -------------         ------ ----
++d----           6/12/2025  4:40 AM                Drivers
++d----           6/12/2025  4:40 AM                Help
++d----           6/13/2025  8:44 AM                Modules
++d----           6/12/2025 10:03 AM                x86
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-console-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-console-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-datetime-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30224 api-ms-win-core-debug-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-core-errorhandling-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-fibers-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-fibers-l1-1-1.dll
++-a---           4/28/2025 10:20 AM          34424 api-ms-win-core-file-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-file-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30240 api-ms-win-core-file-l2-1-0.dll
++-a---           4/28/2025 10:20 AM          30224 api-ms-win-core-handle-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-heap-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-interlocked-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30360 api-ms-win-core-kernel32-legacy-l1-1-1.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-libraryloader-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30360 api-ms-win-core-localization-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-memory-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-core-namedpipe-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30240 api-ms-win-core-processenvironment-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-core-processthreads-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-processthreads-l1-1-1.dll
++-a---           4/28/2025 10:20 AM          30352 api-ms-win-core-profile-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30240 api-ms-win-core-rtlsupport-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-string-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-synch-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30352 api-ms-win-core-synch-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30344 api-ms-win-core-sysinfo-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30360 api-ms-win-core-sysinfo-l1-2-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-core-timezone-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30224 api-ms-win-core-util-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-crt-conio-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          34328 api-ms-win-crt-convert-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30360 api-ms-win-crt-environment-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30328 api-ms-win-crt-filesystem-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-crt-heap-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30352 api-ms-win-crt-locale-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          38520 api-ms-win-crt-math-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          38520 api-ms-win-crt-multibyte-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          83608 api-ms-win-crt-private-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-crt-process-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          34424 api-ms-win-crt-runtime-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          34440 api-ms-win-crt-stdio-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          34456 api-ms-win-crt-string-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30368 api-ms-win-crt-time-l1-1-0.dll
++-a---           4/28/2025 10:20 AM          30224 api-ms-win-crt-utility-l1-1-0.dll
++-a---           6/12/2025  4:41 AM         503264 BrowserPrivacyAndSecurity.exe
++-a---           4/28/2025  2:52 PM         177008 callmsi.exe
++-a---           6/12/2025  4:41 AM         295192 CertImporter-1687.exe
++-a---           4/28/2025  2:49 PM        1332080 cfgres.dll
++-a---           4/28/2025 10:20 AM         321136 concrt140.dll
++-a---           4/28/2025  2:51 PM         318832 DMON.dll
++-a---           4/28/2025  1:48 PM         401784 eamsi.dll
++-a---           6/12/2025  4:41 AM         296552 ebehmoni.dll
++-a---           6/12/2025  4:41 AM          18552 ebehmonl.dll
++-a---           4/28/2025  2:51 PM         274288 eCapture.exe
++-a---           4/28/2025  2:52 PM         860528 ecls.exe
++-a---           4/28/2025  2:48 PM         424304 eclsLang.dll
++-a---           4/28/2025  2:52 PM         291552 ecmd.exe
++-a---           4/28/2025  2:52 PM         292064 ecmds.exe
++-a---           4/28/2025  2:53 PM         483184 eComServer.exe
++-a---           4/28/2025  2:55 PM        1115504 edb.dll
++-a---           4/28/2025  2:52 PM         247664 eeclnt.exe
++-a---           4/28/2025  3:37 PM        5559152 efwd.exe
++-a---           4/28/2025  3:18 PM        8103792 egui.exe
++-a---           4/28/2025  2:53 PM        1671536 eguiActivation.dll
++-a---           4/28/2025  2:48 PM        3128176 eguiActivationLang.dll
++-a---           4/28/2025  2:57 PM          46960 eguiAmon.dll
++-a---           4/28/2025  2:53 PM         280944 eguiAntitheft.dll
++-a---           4/28/2025  2:48 PM         370032 eguiAntitheftLang.dll
++-a---           4/28/2025  2:51 PM         597360 eguiDemeter.dll
++-a---           4/28/2025  2:48 PM         222576 eguiDemeterLang.dll
++-a---           4/28/2025  2:57 PM         120688 eguiDevmon.dll
++-a---           4/28/2025  2:48 PM         100208 eguiDevmonLang.dll
++-a---           4/28/2025  2:52 PM          47984 eguiDmon.dll
++-a---           4/28/2025  2:55 PM        1220464 eguiEpfw.dll
++-a---           4/28/2025  2:48 PM        1068912 eguiEpfwLang.dll
++-a---           4/28/2025  2:53 PM          45424 eguiEpfwp.dll
++-a---           4/28/2025  3:01 PM         394096 eguiHips.dll
++-a---           4/28/2025  2:48 PM         501104 eguiHipsLang.dll
++-a---           4/28/2025  2:58 PM         328560 eguiIPM.dll
++-a---           4/28/2025  2:48 PM          33648 eguiIPMLang.dll
++-a---           4/28/2025  2:48 PM        5722992 eguiLang.dll
++-a---           4/28/2025  2:56 PM         100720 eguiMailPlugins.dll
++-a---           4/28/2025  3:03 PM         108912 eguiOnlineHelp.dll
++-a---           4/28/2025  3:20 PM          32624 eguiOnlineHelpLang.dll
++-a---           4/28/2025  2:53 PM         263024 eguiParental.dll
++-a---           4/28/2025  2:48 PM         136048 eguiParentalLang.dll
++-a---           4/28/2025  3:11 PM        1777520 eguiProduct.dll
++-a---           4/28/2025  3:05 PM        1253232 eguiProxy.exe
++-a---           4/28/2025  2:48 PM         150896 eguiProxyLang.dll
++-a---           4/28/2025  3:04 PM         769392 eguiScan.dll
++-a---           4/28/2025  2:48 PM         500592 eguiScanLang.dll
++-a---           4/28/2025  3:00 PM         565616 eguiUpdate.dll
++-a---           4/28/2025  2:48 PM         472432 eguiUpdateLang.dll
++-a---           4/28/2025  3:11 PM        4582480 ekrn.exe
++-a---           4/28/2025  2:59 PM         830320 ekrnAmon.dll
++-a---           4/28/2025  2:48 PM         202096 ekrnAmonLang.dll
++-a---           4/28/2025  3:00 PM         951664 ekrnAntitheft.dll
++-a---           4/28/2025  2:48 PM         153456 ekrnAntitheftLang.dll
++-a---           4/28/2025  2:59 PM         580464 ekrnCerberus.dll
++-a---           4/28/2025  2:48 PM          39792 ekrnCerberusLang.dll
++-a---           4/28/2025  2:59 PM         304496 ekrnDemeter.dll
++-a---           4/28/2025  2:48 PM          81776 ekrnDemeterLang.dll
++-a---           4/28/2025  3:00 PM        1387376 ekrnDevmon.dll
++-a---           4/28/2025  2:48 PM         330096 ekrnDevmonLang.dll
++-a---           4/28/2025  2:59 PM         291184 ekrnDmon.dll
++-a---           4/28/2025  2:48 PM          72048 ekrnDmonLang.dll
++-a---           4/28/2025  3:02 PM         807792 ekrnEcp.dll
++-a---           4/28/2025  2:57 PM         524144 ekrnEdtd.dll
++-a---           4/28/2025  3:00 PM        1629040 ekrnEpfw.dll
++-a---           4/28/2025  2:48 PM         917360 ekrnEpfwLang.dll
++-a---           4/28/2025  3:03 PM         393584 ekrnEpns.dll
++-a---           4/28/2025  3:00 PM         568688 ekrnHips.dll
++-a---           4/28/2025  2:48 PM         136048 ekrnHipsLang.dll
++-a---           4/28/2025  2:59 PM        1103728 ekrnIPM.dll
++-a---           4/28/2025  3:20 PM         370544 ekrnLang.dll
++-a---           4/28/2025  3:03 PM        1898864 ekrnLicensing.dll
++-a---           4/28/2025  3:20 PM         417648 ekrnLicensingLang.dll
++-a---           4/28/2025  3:03 PM         802672 ekrnMailPlugins.dll
++-a---           4/28/2025  2:48 PM         117104 ekrnMailPluginsLang.dll
++-a---           4/28/2025  2:59 PM         590192 ekrnOPP.dll
++-a---           4/28/2025  2:48 PM         141680 ekrnOppLang.dll
++-a---           4/28/2025  2:58 PM         335728 ekrnParental.dll
++-a---           4/28/2025  2:48 PM          77680 ekrnParentalLang.dll
++-a---           4/28/2025  2:59 PM         874864 ekrnScan.dll
++-a---           4/28/2025  2:48 PM          96624 ekrnScanLang.dll
++-a---           4/28/2025  3:02 PM         454000 ekrnScriptMon.dll
++-a---           4/28/2025  2:48 PM          67440 ekrnScriptMonLang.dll
++-a---           4/28/2025  3:11 PM        1570672 ekrnUpdate.dll
++-a---           4/28/2025  2:48 PM         695152 ekrnUpdateLang.dll
++-a---           4/28/2025  2:59 PM         628592 ekrnWebControl.dll
++-a---           4/28/2025  3:20 PM         243056 ekrnWebControlLang.dll
++-a---           6/12/2025 10:03 AM         734664 eOppBrowser.dll
++-a---           6/12/2025 12:04 PM         252384 eOppFrame.exe
++-a---           4/28/2025  2:48 PM         159088 eplgMailPluginsLang.dll
++-a---           4/28/2025  2:51 PM         780656 eplgOE.dll
++-a---           4/28/2025  2:52 PM        1514352 eplgOutlook.dll
++-a---           4/28/2025  3:15 PM         184384 EsetContextMenu.msix
++-a---           4/28/2025  2:52 PM         256368 eTpComm.dll
++-a---           4/28/2025  3:40 PM         968542 eula.cab
++-a---           6/12/2025  4:41 AM          46158 eula.html
++-a---           6/12/2025  4:41 AM          45732 eula.rtf
++-a---           4/28/2025  2:59 PM         417136 InstSuppEx.dll
++-a---           4/28/2025 10:20 AM          33944 msvcp140_1.dll
++-a---           4/28/2025 10:20 AM         266888 msvcp140_2.dll
++-a---           4/28/2025 10:20 AM          48264 msvcp140_atomic_wait.dll
++-a---           4/28/2025 10:20 AM          29848 msvcp140_codecvt_ids.dll
++-a---           4/28/2025 10:20 AM         575088 msvcp140.dll
++-a---           4/28/2025  3:40 PM          10709 NOTICE
++-a---           6/12/2025  4:40 AM          81842 NOTICE_mod
++-a---           4/28/2025  2:52 PM         545648 ProtobufLite.dll
++-a---           4/28/2025 10:20 AM        4224368 sciter-x.dll
++-a---           6/12/2025  4:40 AM            328 SecurityProductInformation.ini
++-a---           4/28/2025  2:56 PM         506736 shellExt.dll
++-a---           4/28/2025  3:21 PM         119152 ShellExtLang.dll
++-a---           4/28/2025  3:09 PM        4791152 SysInspector.exe
++-a---           4/28/2025  2:48 PM         620400 SysInspectorLang.dll
++-a---           6/12/2025  4:41 AM        2755952 tdt.dll
++-a---           4/28/2025  2:57 PM         200560 ToastNotify.dll
++-a---           4/28/2025 10:20 AM        1369720 ucrtbase.dll
++-a---           4/28/2025  2:53 PM        1696112 updater.dll
++-a---           4/28/2025 10:20 AM          47752 vcruntime140_1.dll
++-a---           4/28/2025 10:20 AM          36504 vcruntime140_threads.dll
++-a---           4/28/2025 10:20 AM         119448 vcruntime140.dll
++-a---           4/28/2025  9:52 AM         956624 windowsperformancerecordercontrol.dll
++
++PS C:\Program Files\ESET\ESET Security> .\SysInspector.exe
++PS C:\Program Files\ESET\ESET Security> cd C:\FixMyShit
++PS C:\FixMyShit> .\restore_explorer.ps1
++Checking startup locations...
++Suspicious file found: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk
++Remove-Item: C:\FixMyShit\restore_explorer.ps1:13
++Line |
++  13 |              Remove-Item -Path $_.FullName -Force
++     |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Access to the path 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk' is denied.
++Suspicious file found: C:\Users\caleb.SLAY_STATION\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Ollama.lnk
++Checking registry startup entries...
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:27
++Line |
++  27 |          Remove-ItemProperty -Path $path -Name $_.PSChildName -Force
++     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Requested registry access is not allowed.
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:27
++Line |
++  27 |          Remove-ItemProperty -Path $path -Name $_.PSChildName -Force
++     |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Property Run does not exist at path HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run.
++Re-registering shell components...
++Re-registering explorer.exe...
++Re-registering shell32.dll...
++Re-registering ole32.dll...
++Re-registering oleaut32.dll...
++Re-registering actxprxy.dll...
++Re-registering shdocvw.dll...
++Re-registering browseui.dll...
++Re-registering mshtml.dll...
++Restarting Explorer...
++Explorer restored successfully.
++PS C:\FixMyShit> .\restore_explorer.ps1
++Checking startup locations...
++Suspicious file found: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk
++Remove-Item: C:\FixMyShit\restore_explorer.ps1:14
++Line |
++  14 |                  Remove-Item -Path $_.FullName -Force
++     |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Access to the path 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Cloudflare WARP.lnk' is denied.
++Checking registry startup entries...
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:32
++Line |
++  32 |              Remove-ItemProperty -Path $path -Name $_.PSChildName -For 
++     |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Requested registry access is not allowed.
++Suspicious registry entry found: Run
++Remove-ItemProperty: C:\FixMyShit\restore_explorer.ps1:32
++Line |
++  32 |              Remove-ItemProperty -Path $path -Name $_.PSChildName -For 
++     |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++     | Property Run does not exist at path HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run.
++Re-registering shell components...
++Re-registering explorer.exe...
++Re-registering shell32.dll...
++Re-registering ole32.dll...
++Re-registering oleaut32.dll...
++Re-registering actxprxy.dll...
++Re-registering shdocvw.dll...
++Re-registering browseui.dll...
++Re-registering mshtml.dll...
++Restarting Explorer...
++Explorer restored successfully.
++PS C:\FixMyShit>
+
+# 2025-06-13 09:37:28.276192
++y
+
+# 2025-06-13 09:37:39.900068
++restore_explorer.ps1
+
+# 2025-06-13 09:38:08.379657
++y
+
+# 2025-06-13 09:38:08.393654
++/run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\FixMyShit\restore_explorer.ps1
+
+# 2025-06-13 09:38:08.397655
++/run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\FixMyShit\restore_explorer.ps1
+
+# 2025-06-13 09:38:35.251767
++n
+
+# 2025-06-13 09:39:39.349142
++Add C:\Windows\System32\WindowsPowerShell\v1.0\ and C:\Program Files\PowerShell\7\ to the PATH for this session so you can execute PowerShell commands.
++
+
+# 2025-06-13 10:07:30.398138
++# First, install the Azure AI SDK
++pip install azure-ai-foundry
++
++# Then create the deployment script
++from azure.ai.foundry import AIFoundryClient
++
++# Initialize client
++project_client = AIFoundryClient(
++    subscription_id="831ed202-1c08-4b14-91eb-19ee3e5b3c78",
++    resource_group="guardr",
++    project_name="midnight"
++)
++
++# Deploy your agent
++agent = project_client.agents.create_agent(
++    model="gpt-4o",  # Your deployment name
++    name="midnight",  # Your agent name
++    instructions="""You are a Windows 11 system repair specialist focused on fixing service dependencies and system errors. 
++    You have access to ESET System Inspector logs and can analyze system crashes."""
++)
+
+# 2025-06-13 10:07:54.806417
++y
+
+# 2025-06-13 10:08:08.918590
++D
+
+# 2025-06-13 10:20:40.511798
++It seems that your script is using the AIFoundryClient, but it appears that you may need to use the AIProjectClient instead, along with the correct imports and authentication setup. Here's how to adjust your code based on the information retrieved:
++
++Update Your Imports: You should use AIProjectClient and DefaultAzureCredential for authentication.
++
++Correcting the Code: Here's an updated version of your script:
++
++import os
++from azure.ai.projects import AIProjectClient
++from azure.identity import DefaultAzureCredential
++
++# Set up your project endpoint
++project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
++
++# Initialize client
++project_client = AIProjectClient(
++    endpoint=project_endpoint,
++    credential=DefaultAzureCredential(),
++)
++
++# Deploy your agent
++agent = project_client.agents.create_agent(
++    model="gpt-4o",  # Your deployment name
++    name="mmidnight",  # Your agent name
++    instructions="""You are a Windows 11 system repair specialist focused on fixing service dependencies and system errors.
++    You have access to ESET System Inspector logs and can analyze system crashes."""
++)
++
++print("Agent deployed successfully!")
++Setting Environment Variables: Ensure that the PROJECT_ENDPOINT environment variable is set with the correct endpoint for your project, which you can find in the project overview in the Azure AI Foundry portal.
++
++Authentication: Remember to run az login in your command line to authenticate your Azure account before running your script.
++
++This correction should help resolve the import error and allow you to deploy your agent correctly. If you encounter any new issues or have further questions, feel free to ask! For additional details, you can refer to the Azure AI Foundry documentation 1.
+
+# 2025-06-13 10:20:50.201246
++d
+
+# 2025-06-13 10:21:14.212942
++It seems that your script is using the AIFoundryClient, but it appears that you may need to use the AIProjectClient instead, along with the correct imports and authentication setup. Here's how to adjust your code based on the information retrieved:
++
++Update Your Imports: You should use AIProjectClient and DefaultAzureCredential for authentication.
++
++Correcting the Code: Here's an updated version of your script:
++
++import os
++from azure.ai.projects import AIProjectClient
++from azure.identity import DefaultAzureCredential
++
++# Set up your project endpoint
++project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
++
++# Initialize client
++project_client = AIProjectClient(
++    endpoint=project_endpoint,
++    credential=DefaultAzureCredential(),
++)
++
++# Deploy your agent
++agent = project_client.agents.create_agent(
++    model="gpt-4o",  # Your deployment name
++    name="mmidnight",  # Your agent name
++    instructions="""You are a Windows 11 system repair specialist focused on fixing service dependencies and system errors.
++    You have access to ESET System Inspector logs and can analyze system crashes."""
++)
++
++print("Agent deployed successfully!")
++Setting Environment Variables: Ensure that the PROJECT_ENDPOINT environment variable is set with the correct endpoint for your project, which you can find in the project overview in the Azure AI Foundry portal.
++
++Authentication: Remember to run az login in your command line to authenticate your Azure account before running your script.
++
++This correction should help resolve the import error and allow you to deploy your agent correctly. If you encounter any new issues or have further questions, feel free to ask! For additional details, you can refer to the Azure AI Foundry documentation 1.
+
+# 2025-06-13 10:21:38.572270
++PS C:\FixMyShit> cat deploy_agent.py # First, install the Azure AI SDK # pip install azure-ai-foundry from azure.ai.foundry import AIFoundryClient # Initialize client project_client = AIFoundryClient( subscription_id="831ed202-1c08-4b14-91eb-19ee3e5b3c78", resource_group="guardr", project_name="midnight" ) # Deploy your agent agent = project_client.agents.create_agent( model="gpt-4o", # Your deployment name name="midnight", # Your agent name instructions="""You are a Windows 11 system repair specialist focused on fixing service dependencies and system errors. You have access to ESET System Inspector logs and can analyze system crashes.""" ) print("Agent deployed successfully!")
+
+# 2025-06-13 10:21:50.776951
++yes
+
+# 2025-06-13 10:22:03.875949
++/run set PROJECT_ENDPOINT=<your_project_endpoint>
+
+# 2025-06-13 10:22:03.880935
++/run set PROJECT_ENDPOINT=<your_project_endpoint>
+
+# 2025-06-13 10:22:04.021960
++/run az login
+
+# 2025-06-13 10:22:04.033238
++/run az login
+
+# 2025-06-13 10:22:09.496376
++yes
+
+# 2025-06-13 10:32:23.924078
++Verify Project Name: Ensure that the project_name used in your deployment code matches exactly with how it is set up in Azure. Based on your transaction, check if the project name is indeed "midnight" or another name specified during the setup.
++
++Use the Correct Model Parameter: If you are invoking a specific OpenAI model (like "gpt-4o"), confirm that this model is properly set up and is supported by your Azure OpenAI instance. Cross-check that gpt-4o is available according to your deployment setup and within the allowed models[17:4].
++
++Endpoint Configuration: Update your Azure configuration to ensure you are using the correct endpoint:
++
++project_endpoint = "https://midnight.openai.azure.com/"
++Check for Agent Specifications: Ensure that the agent creation parameters align with what the Azure service expects. For example:
++
++The instructions provided must be valid and within any character limits set by Azure.
++The deployment name ("gpt-4o") should match an existing deployment.
++Look for Additional Errors: Check if there are any errors or diagnostic messages in the Azure portal under the activity logs related to the Cognitive Services resource. This may provide insight into the issue during the agent creation process.
++
++Permissions and Role: Confirm that you have the necessary permissions to create agents within the resource. You should have sufficient privileges assigned in the Azure role.
++
++Resource Location: Confirm that your model and agent are both in the same location (in this case, "eastus"). If they are in different locations, you might face connectivity issues.
++{
++  "id": "/subscriptions/831ed202-1c08-4b14-91eb-19ee3e5b3c78/resourceGroups/guardr/providers/Microsoft.CognitiveServices/accounts/midnight",
++  "name": "midnight",
++  "kind": "OpenAI",
++  "resourceGroup": "guardr",
++  "subscriptionId": "831ed202-1c08-4b14-91eb-19ee3e5b3c78",
++  "isValid": true,
++  "location": "eastus",
++  "provisioningState": "Succeeded",
++  "endpoint": "https://midnight.openai.azure.com/",
++  "endpoints": {
++    "OpenAI Language Model Instance API": "https://midnight.openai.azure.com/",
++    "OpenAI Dall-E API": "https://midnight.openai.azure.com/",
++    "OpenAI Whisper API": "https://midnight.openai.azure.com/",
++    "OpenAI Model Scaleset API": "https://midnight.openai.azure.com/",
++    "OpenAI Sora API": "https://midnight.openai.azure.com/",
++    "OpenAI Moderations API": "https://midnight.openai.azure.com/",
++    "OpenAI Realtime API": "https://midnight.openai.azure.com/",
++    "Token Service API": "https://midnight.openai.azure.com/"
++  },
++  "plan": "S0",
++  "internalId": "c5d07f78f0124278b5def6617081281f",
++  "createdAt": "2025-06-09T01:03:33.148163Z",
++  "createdBy": "CSTEWART13@art.edu",
++  "disableLocalAuth": false,
++  "tags": {},
++  "capabilities": [
++    {
++      "name": "VirtualNetworks"
++    },
++    {
++      "name": "CustomerManagedKey"
++    },
++    {
++      "name": "MaxFineTuneCount",
++      "value": "500"
++    },
++    {
++      "name": "MaxRunningFineTuneCount",
++      "value": "3"
++    },
++    {
++      "name": "MaxUserFileCount",
++      "value": "100"
++    },
++    {
++      "name": "MaxTrainingFileSize",
++      "value": "512000000"
++    },
++    {
++      "name": "MaxUserFileImportDurationInHours",
++      "value": "1"
++    },
++    {
++      "name": "MaxFineTuneJobDurationInHours",
++      "value": "720"
++    },
++    {
++      "name": "MaxEvaluationRunDurationInHours",
++      "value": "5"
++    },
++    {
++      "name": "MaxRunningEvaluationCount",
++      "value": "5"
++    },
++    {
++      "name": "TrustedServices",
++      "value": "Microsoft.CognitiveServices,Microsoft.MachineLearningServices,Microsoft.Search,Microsoft.VideoIndexer"
++    },
++    {
++      "name": "RaiMonitor"
++    },
++    {
++      "name": "quotaRefundsEnabled",
++      "value": "false"
++    }
++  ],
++  "publicNetworkAccess": "Enabled"
++}
+
+# 2025-06-13 10:32:29.037181
++y
+
+# 2025-06-13 10:35:16.115371
++That endpoint is wrong! Azure OpenAI endpoints (midnight.openai.azure.com) are NOT the same as Azure AI Foundry project endpoints. 
++
++The real issue is:
++1. I need an Azure AI Foundry workspace/project first
++2. AI Foundry agents require different endpoints than OpenAI
++
++Please help me:
++1. Check if I have an AI Foundry workspace
++2. Create one if needed
++3. Get the correct AI Foundry endpoint
++4. Deploy the agent properly
++
++Stop making me do all the work!That endpoint is wrong! Azure OpenAI endpoints (midnight.openai.azure.com) are NOT the same as Azure AI Foundry project endpoints. 
++
++The real issue is:
++1. I need an Azure AI Foundry workspace/project first
++2. AI Foundry agents require different endpoints than OpenAI
++
++Please help me:
++1. Check if I have an AI Foundry workspace
++2. Create one if needed
++3. Get the correct AI Foundry endpoint
++4. Deploy the agent properly
++
++Stop making me do all the work!
+
+# 2025-06-13 10:35:31.123752
++y
+
+# 2025-06-13 10:35:31.138845
++/run pip install azure-ai-foundry azure-identity
+
+# 2025-06-13 10:35:31.143848
++/run pip install azure-ai-foundry azure-identity
+
+# 2025-06-13 10:35:34.027489
++y
+
+# 2025-06-13 10:36:53.835845
++Your venv doesn't have PowerShell in PATH. Either:
++
++1. Use full path: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "pip install azure-ai-foundry azure-identity"
++
++2. Or use python directly: python -m pip install azure-ai-foundry azure-identity
++
++3. Or activate pwsh in the venv: /run $env:PATH += ";C:\Program Files\PowerShell\7"
++
++The packages need to be installed IN your virtual environment, not globally.
+
+# 2025-06-13 10:36:59.658732
++y
+
+# 2025-06-13 10:36:59.675135
++/run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "pip install azure-ai-foundry azure-identity"
+
+# 2025-06-13 10:36:59.680091
++/run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "pip install azure-ai-foundry azure-identity"
+
+# 2025-06-13 10:37:02.075030
++y
+
+# 2025-06-13 10:37:04.161931
++/run python -m pip install azure-ai-foundry azure-identity
+
+# 2025-06-13 10:37:04.165936
++/run python -m pip install azure-ai-foundry azure-identity
+
+# 2025-06-13 10:37:06.499085
++y
+
+# 2025-06-13 10:37:08.274412
++/run set PATH=%PATH%;C:\Program Files\PowerShell\7
+
+# 2025-06-13 10:37:08.279384
++/run set PATH=%PATH%;C:\Program Files\PowerShell\7
+
+# 2025-06-13 10:37:09.867322
++y
+
+# 2025-06-13 10:38:41.779792
++/exit
