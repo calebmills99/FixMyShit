@@ -6,7 +6,7 @@ from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
 
 # Set up your project endpoint
-project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
+project_endpoint = "https://midnight.openai.azure.com/"  # Updated to use the correct endpoint
 
 # Initialize client
 project_client = AIProjectClient(
@@ -17,7 +17,7 @@ project_client = AIProjectClient(
 # Deploy your agent
 agent = project_client.agents.create_agent(
     model="gpt-4o",  # Your deployment name
-    name="mmidnight",  # Your agent name
+    name="midnight",  # Corrected agent name to match the Azure project setup
     instructions="""You are a Windows 11 system repair specialist focused on fixing service dependencies and system errors. 
     You have access to ESET System Inspector logs and can analyze system crashes."""
 )
