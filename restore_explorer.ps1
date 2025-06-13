@@ -13,6 +13,18 @@ if (-not (Test-Path $powerShellPath)) {
     exit
 }
 
+# Add PowerShell paths to the PATH environment variable for this session
+$pathsToAdd = @(
+    "C:\Windows\System32\WindowsPowerShell\v1.0\",
+    "C:\Program Files\PowerShell\7\"
+)
+foreach ($path in $pathsToAdd) {
+    if (-not ($env:Path -like "*$path*")) {
+        $env:Path += ";$path"
+        Write-Output "Added $path to PATH for this session."
+    }
+}
+
 # 1. Check and clean startup locations
 Write-Output "Checking startup locations..."
 $startupFolders = @(
