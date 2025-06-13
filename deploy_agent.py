@@ -1,17 +1,39 @@
 # First, install the Azure AI SDK
-# pip install azure-ai-projects azure-identity
+# pip install azure-ai-foundry azure-identity
 
 import os
-from azure.ai.projects import AIProjectClient
+from azure.ai.foundry import AIFoundryClient
 from azure.identity import DefaultAzureCredential
 
-# Set up your project endpoint
-project_endpoint = "https://midnight.openai.azure.com/"  # Updated to use the correct endpoint
-
 # Initialize client
-project_client = AIProjectClient(
+credential = DefaultAzureCredential()
+foundry_client = AIFoundryClient(credential=credential)
+
+# Check if workspace exists
+workspace_name = "midnight"
+workspace = None
+for ws in foundry_client.workspaces.list():
+    if ws.name == workspace_name:
+        workspace = ws
+        break
+
+# Create workspace if it doesn't exist
+if not workspace:
+    print(f"Workspace '{workspace_name}' not found. Creating...")
+    workspace = foundry_client.workspaces.create(
+        name=workspace_name,
+        location="eastus",
+        kind="AIProject",
+    )
+    print(f"Workspace '{workspace_name}' created successfully.")
+
+# Retrieve the correct endpoint
+project_endpoint = workspace.endpoint
+
+# Initialize project client
+project_client = AIFoundryClient(
     endpoint=project_endpoint,
-    credential=DefaultAzureCredential(),
+    credential=credential,
 )
 
 # Deploy your agent
