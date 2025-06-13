@@ -1,5 +1,11 @@
 # Restore Explorer Functionality Script
 
+# Check for administrative privileges
+if (-not ([Security.Principal.WindowsPrincipal]([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Output "This script must be run as an administrator. Exiting..."
+    exit
+}
+
 # 1. Check and clean startup locations
 Write-Output "Checking startup locations..."
 $startupFolders = @(
@@ -13,7 +19,7 @@ foreach ($folder in $startupFolders) {
             try {
                 Remove-Item -Path $_.FullName -Force
             } catch {
-                Write-Output "Failed to remove file: $($_.FullName). Error: $($_.Exception.Message)"
+                Write-Output "Failed to remove file: $($_.FullName). Error: $($_.Exception.Message). Please check permissions or run as administrator."
             }
         }
     }
@@ -31,7 +37,7 @@ foreach ($path in $registryPaths) {
         try {
             Remove-ItemProperty -Path $path -Name $_.PSChildName -Force
         } catch {
-            Write-Output "Failed to remove registry entry: $($_.PSChildName). Error: $($_.Exception.Message)"
+            Write-Output "Failed to remove registry entry: $($_.PSChildName). Error: $($_.Exception.Message). Please check permissions or run as administrator."
         }
     }
 }
