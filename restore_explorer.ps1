@@ -6,6 +6,13 @@ if (-not ([Security.Principal.WindowsPrincipal]([Security.Principal.WindowsIdent
     exit
 }
 
+# Ensure PowerShell is available
+$powerShellPath = "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
+if (-not (Test-Path $powerShellPath)) {
+    Write-Output "PowerShell executable not found at $powerShellPath. Please ensure PowerShell is installed and accessible."
+    exit
+}
+
 # 1. Check and clean startup locations
 Write-Output "Checking startup locations..."
 $startupFolders = @(
