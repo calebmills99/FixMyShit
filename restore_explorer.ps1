@@ -10,7 +10,11 @@ foreach ($folder in $startupFolders) {
     Get-ChildItem -Path $folder -Force | ForEach-Object {
         if ($_.Name -like "*.lnk" -or $_.Name -like "*.exe") {
             Write-Output "Suspicious file found: $($_.FullName)"
-            Remove-Item -Path $_.FullName -Force
+            try {
+                Remove-Item -Path $_.FullName -Force
+            } catch {
+                Write-Output "Failed to remove file: $($_.FullName). Error: $($_.Exception.Message)"
+            }
         }
     }
 }
@@ -24,7 +28,11 @@ $registryPaths = @(
 foreach ($path in $registryPaths) {
     Get-ItemProperty -Path $path | ForEach-Object {
         Write-Output "Suspicious registry entry found: $($_.PSChildName)"
-        Remove-ItemProperty -Path $path -Name $_.PSChildName -Force
+        try {
+            Remove-ItemProperty -Path $path -Name $_.PSChildName -Force
+        } catch {
+            Write-Output "Failed to remove registry entry: $($_.PSChildName). Error: $($_.Exception.Message)"
+        }
     }
 }
 
