@@ -1,0 +1,68 @@
+1 Verify normal boot mode:
+   systeminfo | Select-String ''Boot Mode''
+
+2. Check Schedule service status and configuration:
+   Get-Service Schedule | Format-List Name, Status, StartType
+   sc.exe qc Schedule
+
+3. Examine service dependencies:
+   Get-Service Schedule | Select-Object -ExpandProperty RequiredServices | Format-List Name, Status, StartType
+   sc.exe enumdepend Schedule 1024
+
+4. Review related system events:
+   Get-WinEvent -LogName ''System'' -MaxEvents 50 | Where-Object {$_.Message -match ''Schedule''} | Format-List TimeCreated, Id, LevelDisplayName, Message
+   eventvwr.msc
+
+5. Verify schedsvc.dll integrity:
+   Get-AuthenticodeSignature C:\Windows\System32\schedsvc.dll | Format-List Status, SignerCertificate
+
+6. Check service account permissions:
+   Get-WmiObject -Class Win32_Service -Filter \"Name=''''Schedule'''\"" | Select-Object StartName, StartMode
+
+7. Examine Task Scheduler operational logs:
+   Get-WinEvent -LogName ''Microsoft-Windows-TaskScheduler/Operational'' -MaxEvents 20 | Format-List TimeCreated, Id, LevelDisplayName, Message
+
+8. Review EnableAllServices task status:
+   schtasks /query /tn \"\EnableAllServices\" /fo LIST /v
+   Get-ScheduledTaskInfo -TaskName \"\EnableAllServices\" | Format-List TaskName, LastRunTime, LastTaskResult
+
+9. Check for conflicting third-party services:
+   Get-WmiObject -Class Win32_Service | Where-Object {$_.Caption -notlike \"Microsoft*\" -and $_.State -eq \"Running\"} | Format-Table Name, DisplayName, StartMode, State
+   services.msc
+
+10. Verify system file integrity:
+    sfc /verifyonly
+
+11. Monitor system resource usage:
+    taskmgr.exe
+
+12. Verify and repair system files:
+    sfc /scannow
+    Dism /Online /Cleanup-Image /RestoreHealth
+
+13. Check and repair disk:
+    chkdsk C: /f /r
+
+14. Examine boot configuration:
+    bcdedit /enum
+
+15. Check Windows Recovery Environment:
+    reagentc /info
+
+16. Attempt to restore missing winre.wim:
+    reagentc /enable
+    If this fails, manually copy a valid winre.wim from installation media.
+
+17. Verify Schedule service registry entries:
+    reg query \"HKLM\SYSTEM\CurrentControlSet\Services\Schedule\" /s
+
+18. Check for pending file rename operations:
+    reg query \"HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\" /v PendingFileRenameOperations
+
+19. Examine system restore points:
+    Get-ComputerRestorePoint | Format-Table CreationTime, Description, SequenceNumber, EventType
+
+20. Review system update history:
+    Get-WinEvent -ProviderName Microsoft-Windows-WindowsUpdateClient | Where-Object {$_.Id -eq 19} | Select-Object TimeCreated, Message | Format-List
+
+Execute these steps after booting into regular mode for a comprehensive investigation of the Schedule service issues.
