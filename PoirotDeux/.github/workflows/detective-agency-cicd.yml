@@ -1,0 +1,47 @@
+name: Detective Agency CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Validate Bicep Templates
+        run: |
+          az bicep build --file ./AzureLab/Bicep/azure-detective-agency.bicep
+          az deployment sub validate --location eastus --template-file ./AzureLab/Bicep/azure-detective-agency.bicep
+      
+      - name: Run PowerShell Tests
+        shell: pwsh
+        run: |
+          Install-Module -Name Pester -Force
+          Invoke-Pester ./Tests/* -PassThru
+          
+  deploy:
+    needs: build_and_test
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Deploy Infrastructure
+        run: |
+          az deployment sub create --name "DetectiveAgency-$(date +'%Y%m%d%H%M')" --location eastus --template-file ./AzureLab/Bicep/azure-detective-agency.bicep --parameters environment=prod

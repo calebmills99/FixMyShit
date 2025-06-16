@@ -1,0 +1,32 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["post"]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "evidenceQueue",
+      "queueName": "evidence-processing",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "evidenceDocument",
+      "databaseName": "detective",
+      "collectionName": "evidence",
+      "createIfNotExists": true,
+      "connectionStringSetting": "CosmosDBConnection"
+    }
+  ]
+}
