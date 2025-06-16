@@ -1,0 +1,31 @@
+﻿AZURE RESOURCE INVESTIGATION REPORT
+==================================
+Date: 2025-06-15 15:22
+Investigator: Detective Poirot Deux
+Subscription: Subscription 1
+ID: f7717a09-66d2-488b-9f21-6af0d0b3af92
+==================================
+
+RESOURCE GROUPS FOUND: 0
+------------------------
+
+Storage Accounts FOUND: 0
+------------------------
+  [NONE FOUND]
+
+Key Vaults FOUND: 0
+------------------------
+  [NONE FOUND]
+
+App Insights FOUND: 0
+------------------------
+  [NONE FOUND]
+
+Cognitive Services FOUND: 0
+------------------------
+  [NONE FOUND]
+
+Log Analytics FOUND: 0
+------------------------
+  [NONE FOUND]
+

@@ -1,0 +1,70 @@
+[2025-06-14 11:58:15] [INFO] === SHELL AND COM DIAGNOSTIC STARTED ===
+[2025-06-14 11:58:15] [INFO] Log file: .\shell_com_diagnostic_20250614_115815.log
+[2025-06-14 11:58:15] [INFO] Testing PowerShell Core Functionality...
+[2025-06-14 11:58:15] [SUCCESS] PowerShell Version: 7.5.1, Edition: Core
+[2025-06-14 11:58:15] [SUCCESS] Command 'Get-Process' working
+[2025-06-14 11:58:15] [SUCCESS] Command 'Get-Service' working
+[2025-06-14 11:58:18] [SUCCESS] Command 'Get-WmiObject' working
+[2025-06-14 11:58:18] [SUCCESS] Command 'Get-CimInstance' working
+[2025-06-14 11:58:18] [INFO] Testing COM Component Registration...
+[2025-06-14 11:58:18] [SUCCESS] COM 'Shell.Application' registered and functional
+[2025-06-14 11:58:18] [SUCCESS] COM 'Scripting.FileSystemObject' registered and functional
+[2025-06-14 11:58:18] [SUCCESS] COM 'WScript.Shell' registered and functional
+[2025-06-14 11:58:21] [SUCCESS] COM 'Excel.Application' registered and functional
+[2025-06-14 11:58:25] [SUCCESS] COM 'Word.Application' registered and functional
+[2025-06-14 11:58:25] [INFO] Testing Registry Shell Extensions...
+[2025-06-14 11:58:25] [INFO] Checking registry key: HKLM:\SOFTWARE\Classes\*\shellex\ContextMenuHandlers (timeout-protected)
+[2025-06-14 11:58:36] [ERROR] Registry key 'HKLM:\SOFTWARE\Classes\*\shellex\ContextMenuHandlers' TIMEOUT - likely corrupted by malware
+[2025-06-14 11:58:36] [INFO] Checking registry key: HKLM:\SOFTWARE\Classes\Directory\shellex\ContextMenuHandlers (timeout-protected)
+[2025-06-14 11:58:37] [SUCCESS] Registry key 'HKLM:\SOFTWARE\Classes\Directory\shellex\ContextMenuHandlers' accessible with 8 items (timeout-protected)
+[2025-06-14 11:58:37] [INFO] Checking registry key: HKLM:\SOFTWARE\Classes\Folder\shellex\ContextMenuHandlers (timeout-protected)
+[2025-06-14 11:58:39] [SUCCESS] Registry key 'HKLM:\SOFTWARE\Classes\Folder\shellex\ContextMenuHandlers' accessible with 11 items (timeout-protected)
+[2025-06-14 11:58:39] [INFO] Checking registry key: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved (timeout-protected)
+[2025-06-14 11:58:40] [SUCCESS] Registry key 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved' accessible with 0 items (timeout-protected)
+[2025-06-14 11:58:40] [INFO] Testing Windows Shell Services...
+[2025-06-14 11:58:40] [SUCCESS] Service 'ShellHWDetection' status: Running
+[2025-06-14 11:58:40] [SUCCESS] Service 'Themes' status: Running
+[2025-06-14 11:58:40] [SUCCESS] Service 'AudioSrv' status: Running
+[2025-06-14 11:58:40] [SUCCESS] Service 'AudioEndpointBuilder' status: Running
+[2025-06-14 11:58:40] [SUCCESS] Service 'Winmgmt' status: Running
+[2025-06-14 11:58:40] [INFO] Testing Critical Shell DLL Registration...
+[2025-06-14 11:58:40] [SUCCESS] DLL 'shell32.dll' found, size: 6473680 bytes
+[2025-06-14 11:58:40] [SUCCESS] DLL 'ole32.dll' found, size: 1408896 bytes
+[2025-06-14 11:58:40] [SUCCESS] DLL 'oleaut32.dll' found, size: 663120 bytes
+[2025-06-14 11:58:40] [SUCCESS] DLL 'comctl32.dll' found, size: 579296 bytes
+[2025-06-14 11:58:40] [SUCCESS] DLL 'shdocvw.dll' found, size: 491008 bytes
+[2025-06-14 11:58:40] [SUCCESS] DLL 'browseui.dll' found, size: 12288 bytes
+[2025-06-14 11:58:40] [SUCCESS] DLL 'explorer.exe' found, size: 2604104 bytes
+[2025-06-14 11:58:40] [INFO] Checking Recent Event Log Errors...
+[2025-06-14 11:58:41] [SUCCESS] No shell/COM related errors found in recent logs
+[2025-06-14 11:58:41] [INFO] Testing File Associations...
+[2025-06-14 11:58:41] [SUCCESS] File association '.txt': .txt=txtfilelegacy
+[2025-06-14 11:58:41] [SUCCESS] File association '.exe': .exe=exefile
+[2025-06-14 11:58:42] [SUCCESS] File association '.dll': .dll=dllfile
+[2025-06-14 11:58:42] [WARNING] File association '.ps1': NOT FOUND
+[2025-06-14 11:58:42] [SUCCESS] File association '.bat': .bat=batfile
+[2025-06-14 11:58:42] [INFO] Testing Shell Namespace Extensions...
+[2025-06-14 11:58:44] [SUCCESS] Found 30 namespace extensions (timeout-protected)
+[2025-06-14 11:58:44] [ERROR] Critical namespace '{20D04FE0-3AEA-1069-A2D8-08002B30309D}' MISSING
+[2025-06-14 11:58:44] [SUCCESS] Critical namespace '{450D8FBA-AD25-11D0-98A8-0800361B1103}' present
+[2025-06-14 11:58:44] [ERROR] Critical namespace '{208D2C60-3AEA-1069-A2D7-08002B30309D}' MISSING
+[2025-06-14 11:58:44] [INFO] Testing User Profile and Shell Folders...
+[2025-06-14 11:58:44] [SUCCESS] Shell folder 'Desktop': C:\Users\caleb.SLAY_STATION\OneDrive-vm\OneDrive\Documents\Desktop - OK
+[2025-06-14 11:58:44] [SUCCESS] Shell folder 'Documents': C:\Users\caleb.SLAY_STATION\Documents - OK
+[2025-06-14 11:58:44] [SUCCESS] Shell folder 'Programs': C:\Users\caleb.SLAY_STATION\AppData\Roaming\Microsoft\Windows\Start Menu\Programs - OK
+[2025-06-14 11:58:44] [SUCCESS] Shell folder 'StartMenu': C:\Users\caleb.SLAY_STATION\AppData\Roaming\Microsoft\Windows\Start Menu - OK
+[2025-06-14 11:58:44] [INFO] Testing Terminal and Console Functionality...
+[2025-06-14 11:58:44] [SUCCESS] Console Host: ServerRemoteHost Version: 7.5.1
+[2025-06-14 11:58:44] [SUCCESS] CMD execution working
+[2025-06-14 11:58:44] [SUCCESS] PowerShell ISE available
+[2025-06-14 11:58:44] [INFO] Generating Repair Recommendations...
+[2025-06-14 11:58:44] [INFO] === DIAGNOSTIC SUMMARY ===
+[2025-06-14 11:58:44] [ERROR] Total Errors: 3
+[2025-06-14 11:58:44] [WARNING] Total Warnings: 1
+[2025-06-14 11:58:44] [INFO] RECOMMENDATIONS:
+[2025-06-14 11:58:44] [INFO] - Critical shell/COM issues detected. Recommend running System File Checker (sfc /scannow)
+[2025-06-14 11:58:44] [INFO] - Run DISM health check: DISM /Online /Cleanup-Image /CheckHealth
+[2025-06-14 11:58:44] [INFO] - Re-register critical COM components using regsvr32
+[2025-06-14 11:58:44] [INFO] - Reset Windows shell components using PowerShell cmdlets
+[2025-06-14 11:58:44] [INFO] Diagnostic complete. Log saved to: .\shell_com_diagnostic_20250614_115815.log
+[2025-06-14 11:58:44] [INFO] === SHELL AND COM DIAGNOSTIC COMPLETED ===

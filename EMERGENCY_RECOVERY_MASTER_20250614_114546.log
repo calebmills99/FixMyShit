@@ -1,0 +1,25 @@
+[2025-06-14 11:45:46] [INFO] [MASTER] ========== EMERGENCY RECOVERY MASTER ORCHESTRATION STARTED ==========
+[2025-06-14 11:45:46] [INFO] [MASTER] Log file: .\EMERGENCY_RECOVERY_MASTER_20250614_114546.log
+[2025-06-14 11:45:46] [INFO] [MASTER] Execution parameters: Phase=All, Interactive=False, ValidateOnly=False, EmergencyMode=False
+[2025-06-14 11:45:46] [INFO] [MASTER] Performing comprehensive prerequisite validation...
+[2025-06-14 11:45:46] [SUCCESS] [MASTER] Administrator privileges confirmed
+[2025-06-14 11:45:46] [SUCCESS] [MASTER] PowerShell version compatible: 7.5.1
+[2025-06-14 11:45:47] [SUCCESS] [MASTER] Sufficient disk space available: 674.62GB
+[2025-06-14 11:45:49] [INFO] [MASTER] Network connectivity: 3/3 tests passed
+[2025-06-14 11:45:50] [INFO] [MASTER] System uptime: 2.3 hours
+[2025-06-14 11:45:50] [WARN] [MASTER] WARNING: 11 recent critical system errors detected
+[2025-06-14 11:45:50] [SUCCESS] [MASTER] All recovery scripts available
+[2025-06-14 11:45:50] [INFO] [MASTER] Executing phases: 0, 1, 2, 3
+[2025-06-14 11:45:50] [INFO] [MASTER] ========== STARTING PHASE 0: Emergency Service Repairs ==========
+[2025-06-14 11:45:50] [INFO] [MASTER] Critical Windows service repairs including Firewall service and .NET runtime restoration
+[2025-06-14 11:45:50] [INFO] [PHASE0] Starting script: shell_com_diagnostic.ps1 (Shell COM component diagnostics)
+[2025-06-14 11:45:50] [INFO] [PHASE0] Executing: .\shell_com_diagnostic.ps1
+[2025-06-14 11:47:51] [ERROR] [PHASE0] Script TIMEOUT after 120s: shell_com_diagnostic.ps1
+[2025-06-14 11:47:51] [ERROR] [PHASE0] Script failed in Phase 0: shell_com_diagnostic.ps1
+[2025-06-14 11:47:51] [CRITICAL] [PHASE0] CRITICAL PHASE FAILURE - Stopping execution
+[2025-06-14 11:47:51] [ERROR] [MASTER] ========== PHASE 0 COMPLETED WITH ERRORS (2m) ==========
+[2025-06-14 11:47:51] [CRITICAL] [MASTER] Critical phase failure - stopping execution
+[2025-06-14 11:47:51] [INFO] [MASTER] Generating comprehensive execution report...
+[2025-06-14 11:47:52] [INFO] [MASTER] Execution report saved: .\EMERGENCY_RECOVERY_REPORT_20250614_114752.json
+[2025-06-14 11:47:52] [INFO] [MASTER] ========== EMERGENCY RECOVERY MASTER ORCHESTRATION COMPLETED ==========
+[2025-06-14 11:47:52] [ERROR] [MASTER] Master orchestration completed with errors

@@ -1,0 +1,68 @@
+[2025-06-14 01:25:13] [INFO] === AZURE AI ENVIRONMENT VALIDATION STARTED ===
+[2025-06-14 01:25:13] [INFO] Log file: .\azure_validation_20250614_012513.log
+[2025-06-14 01:25:13] [INFO] Testing Azure CLI installation and configuration...
+[2025-06-14 01:25:21] [SUCCESS] Azure CLI is installed
+[2025-06-14 01:25:21] [INFO] Validating Azure authentication and subscription access...
+[2025-06-14 01:25:25] [SUCCESS] Azure authentication successful
+[2025-06-14 01:25:25] [INFO] Logged in as: CSTEWART13@art.edu
+[2025-06-14 01:25:25] [INFO] Current subscription: Azure subscription 1 (831ed202-1c08-4b14-91eb-19ee3e5b3c78)
+[2025-06-14 01:25:25] [SUCCESS] Correct subscription is active
+[2025-06-14 01:25:25] [INFO] Testing Azure OpenAI connectivity...
+[2025-06-14 01:25:25] [SUCCESS] Network connectivity to Azure OpenAI endpoint successful
+[2025-06-14 01:25:31] [SUCCESS] Azure OpenAI resource found: midnight
+[2025-06-14 01:25:31] [INFO] Resource location: eastus
+[2025-06-14 01:25:31] [INFO] Provisioning state: Succeeded
+[2025-06-14 01:25:35] [SUCCESS] Found 1 OpenAI deployment(s):
+[2025-06-14 01:25:35] [INFO]   - gpt-4o: gpt-4o v2024-11-20
+[2025-06-14 01:25:35] [INFO] Validating Azure ML workspace access...
+[2025-06-14 01:25:54] [SUCCESS] Azure ML workspace 'midnight' found
+[2025-06-14 01:25:54] [INFO] Workspace location: eastus
+[2025-06-14 01:25:54] [INFO] Discovery URL: https://eastus.api.azureml.ms/discovery
+[2025-06-14 01:25:54] [INFO] Validating Python virtual environment...
+[2025-06-14 01:25:54] [SUCCESS] Virtual environment directory found: .\azure-ai-envsource
+[2025-06-14 01:25:54] [INFO] Virtual environment configuration:
+[2025-06-14 01:25:54] [INFO]   home = C:\Program Files\Python312
+[2025-06-14 01:25:54] [INFO]   include-system-site-packages = false
+[2025-06-14 01:25:54] [INFO]   version = 3.12.10
+[2025-06-14 01:25:54] [INFO]   executable = C:\Program Files\Python312\python.exe
+[2025-06-14 01:25:54] [INFO]   command = C:\Program Files\Python312\python.exe -m venv C:\FixMyShit\azure-ai-envsource
+[2025-06-14 01:25:54] [SUCCESS] Python executable found in virtual environment
+[2025-06-14 01:25:54] [INFO] Python version: Python 3.12.10
+[2025-06-14 01:25:55] [INFO] Validating Azure Python packages...
+[2025-06-14 01:25:56] [WARN] Package 'openai' is missing
+[2025-06-14 01:25:57] [WARN] Package 'azure-identity' is missing
+[2025-06-14 01:25:58] [WARN] Package 'azure-ai-projects' is missing
+[2025-06-14 01:25:58] [WARN] Package 'azure-core' is missing
+[2025-06-14 01:25:59] [WARN] Package 'azure-keyvault-secrets' is missing
+[2025-06-14 01:25:59] [WARN] Missing packages: openai, azure-identity, azure-ai-projects, azure-core, azure-keyvault-secrets
+[2025-06-14 01:25:59] [INFO] Validating Azure Python scripts...
+[2025-06-14 01:25:59] [SUCCESS] Script found: azure.py
+[2025-06-14 01:25:59] [ERROR] Script syntax errors found in azure.py:   File "azure.py", line 7     credential=AzureKeyCredential("3INQ78OeO7B8xXMNd8b908h8YuZuf9DE7sBWdFLk502b1LzuwZ4UJQQJ99BFACYeBjFXJ3w3AAABACOGeHQJ")                ^^^^^^^ SyntaxError: invalid syntax. Perhaps you forgot a comma?
+[2025-06-14 01:25:59] [SUCCESS] Script found: deploy_agent.py
+[2025-06-14 01:26:00] [SUCCESS] Script syntax validation passed: deploy_agent.py
+[2025-06-14 01:26:00] [INFO] Validating MCP server configuration...
+[2025-06-14 01:26:00] [SUCCESS] MCP server directory found: .\azure-ai-mcp-server
+[2025-06-14 01:26:00] [SUCCESS] MCP server package.json found
+[2025-06-14 01:26:00] [SUCCESS] MCP server TypeScript source found
+[2025-06-14 01:26:00] [SUCCESS] Node.js is available: v22.16.0
+[2025-06-14 01:26:01] [INFO] Performing credential security validation...
+[2025-06-14 01:26:01] [SUCCESS] No obvious credential security issues found
+[2025-06-14 01:26:01] [INFO] === AZURE ENVIRONMENT VALIDATION REPORT ===
+[2025-06-14 01:26:01] [INFO] Overall Success Rate: 7/10 (70%)
+[2025-06-14 01:26:01] [INFO] 
+[2025-06-14 01:26:01] [ERROR] MCPServer: FAIL
+[2025-06-14 01:26:01] [SUCCESS] OpenAIConnectivity: PASS
+[2025-06-14 01:26:01] [SUCCESS] MLWorkspace: PASS
+[2025-06-14 01:26:01] [SUCCESS] NetworkConnectivity: PASS
+[2025-06-14 01:26:01] [ERROR] AzureScripts: FAIL
+[2025-06-14 01:26:01] [SUCCESS] AzureCLI: PASS
+[2025-06-14 01:26:01] [ERROR] PythonPackages: FAIL
+[2025-06-14 01:26:01] [SUCCESS] PythonEnvironment: PASS
+[2025-06-14 01:26:01] [SUCCESS] AzureAuth: PASS
+[2025-06-14 01:26:01] [SUCCESS] CredentialSecurity: PASS
+[2025-06-14 01:26:01] [INFO] 
+[2025-06-14 01:26:01] [WARN] RECOMMENDATION: Install missing Python packages using restore_dev_environment.ps1
+[2025-06-14 01:26:01] [WARN] RECOMMENDATION: Install Node.js and MCP server dependencies
+[2025-06-14 01:26:01] [INFO] === AZURE AI ENVIRONMENT VALIDATION COMPLETED ===
+[2025-06-14 01:26:01] [INFO] Detailed log saved to: .\azure_validation_20250614_012513.log
+[2025-06-14 01:26:01] [ERROR] Environment validation FAILED with 70% success rate

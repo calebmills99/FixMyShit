@@ -1,0 +1,56 @@
+[2025-06-14 02:10:35] [INFO] === EMERGENCY SHELL REPAIR STARTED ===
+[2025-06-14 02:10:35] [INFO] Checking PATH environment variable...
+[2025-06-14 02:10:35] [INFO] Current PATH length: 8694 characters
+[2025-06-14 02:10:35] [INFO] System PATH length: 6600 characters
+[2025-06-14 02:10:35] [INFO] User PATH length: 9068 characters
+[2025-06-14 02:10:35] [SUCCESS] Found critical path: C:\WINDOWS\System32
+[2025-06-14 02:10:35] [SUCCESS] Found critical path: C:\WINDOWS
+[2025-06-14 02:10:35] [SUCCESS] Found critical path: C:\WINDOWS\System32\Wbem
+[2025-06-14 02:10:35] [SUCCESS] Found critical path: C:\WINDOWS\System32\WindowsPowerShell\v1.0\
+[2025-06-14 02:10:35] [INFO] Testing basic commands after PATH fix...
+[2025-06-14 02:10:35] [SUCCESS] Command 'cmd' found at: C:\WINDOWS\system32\cmd.exe
+[2025-06-14 02:10:35] [SUCCESS] Command 'powershell' found at: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+[2025-06-14 02:10:35] [SUCCESS] Command 'regsvr32' found at: C:\WINDOWS\system32\regsvr32.exe
+[2025-06-14 02:10:35] [SUCCESS] Command 'sfc' found at: C:\WINDOWS\system32\sfc.exe
+[2025-06-14 02:10:35] [INFO] Re-registering critical COM components...
+[2025-06-14 02:10:36] [SUCCESS] Successfully registered: ole32.dll
+[2025-06-14 02:10:37] [SUCCESS] Successfully registered: oleaut32.dll
+[2025-06-14 02:10:39] [SUCCESS] Successfully registered: shell32.dll
+[2025-06-14 02:10:40] [ERROR] Failed to register comctl32.dll (Exit: 4)
+[2025-06-14 02:10:41] [ERROR] Failed to register shdocvw.dll (Exit: 4)
+[2025-06-14 02:10:42] [ERROR] Failed to register browseui.dll (Exit: 4)
+[2025-06-14 02:10:43] [SUCCESS] Successfully registered: urlmon.dll
+[2025-06-14 02:10:44] [ERROR] Failed to register mshtml.dll (Exit: 4)
+[2025-06-14 02:10:44] [INFO] Checking critical Windows services...
+[2025-06-14 02:10:44] [SUCCESS] Service running: Windows Management Instrumentation
+[2025-06-14 02:10:44] [SUCCESS] Service running: Shell Hardware Detection
+[2025-06-14 02:10:44] [SUCCESS] Service running: Themes
+[2025-06-14 02:10:44] [SUCCESS] Service running: Windows Audio
+[2025-06-14 02:10:44] [SUCCESS] Service running: Remote Procedure Call (RPC)
+[2025-06-14 02:10:44] [SUCCESS] Service running: DCOM Server Process Launcher
+[2025-06-14 02:10:44] [INFO] Checking shell registry keys...
+[2025-06-14 02:10:44] [SUCCESS] Registry key OK: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved (0 items)
+[2025-06-14 02:10:46] [SUCCESS] Registry key OK: HKLM:\SOFTWARE\Classes\CLSID (8089 items)
+[2025-06-14 02:10:46] [SUCCESS] Registry key OK: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace (36 items)
+[2025-06-14 02:10:46] [INFO] Running System File Checker (SFC)...
+[2025-06-14 02:14:55] [INFO] SFC completed with exit code: 0
+[2025-06-14 02:14:55] [SUCCESS] SFC found no integrity violations
+[2025-06-14 02:14:55] [INFO] Running DISM health check...
+[2025-06-14 02:14:56] [INFO] DISM CheckHealth completed with exit code: 0
+[2025-06-14 02:14:56] [SUCCESS] DISM reports image is healthy
+[2025-06-14 02:14:56] [INFO] Verifying environment variables...
+[2025-06-14 02:14:56] [SUCCESS] Environment variable OK: COMSPEC=C:\WINDOWS\system32\cmd.exe
+[2025-06-14 02:14:56] [SUCCESS] Environment variable OK: SystemRoot=C:\WINDOWS
+[2025-06-14 02:14:56] [SUCCESS] Environment variable OK: windir=C:\WINDOWS
+[2025-06-14 02:14:56] [INFO] Performing final validation...
+[2025-06-14 02:14:56] [SUCCESS] COM Shell.Application test: SUCCESS
+[2025-06-14 02:14:56] [SUCCESS] COM WScript.Shell test: SUCCESS
+[2025-06-14 02:14:56] [INFO] === EMERGENCY REPAIR SUMMARY ===
+[2025-06-14 02:14:56] [INFO] Emergency shell repair completed
+[2025-06-14 02:14:56] [INFO] Log file: .\emergency_shell_repair_20250614_021035.log
+[2025-06-14 02:14:56] [INFO] CRITICAL RECOMMENDATIONS:
+[2025-06-14 02:14:56] [WARNING] 1. REBOOT the system to apply environment variable changes
+[2025-06-14 02:14:56] [INFO] 2. Test basic commands after reboot (cmd, powershell, etc.)
+[2025-06-14 02:14:56] [INFO] 3. Run full diagnostic again: .\shell_com_diagnostic.ps1
+[2025-06-14 02:14:56] [WARNING] 4. If issues persist, consider Windows repair install
+[2025-06-14 02:14:56] [INFO] === EMERGENCY SHELL REPAIR COMPLETED ===

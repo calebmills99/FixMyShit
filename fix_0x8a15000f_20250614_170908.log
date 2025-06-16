@@ -1,0 +1,51 @@
+[2025-06-14 17:09:08] [INFO] === EMERGENCY FIX FOR 0x8a15000f STARTED ===
+[2025-06-14 17:09:08] [INFO] Target Error: Data required by the source is missing
+[2025-06-14 17:09:08] [INFO] Step 1: Checking Windows Component Store Health...
+[2025-06-14 17:09:08] [INFO] Running DISM CheckHealth...
+[2025-06-14 17:09:09] [SUCCESS] DISM CheckHealth completed successfully
+[2025-06-14 17:09:09] [INFO] Step 2: Running System File Checker...
+[2025-06-14 17:13:02] [SUCCESS] SFC scan completed - check CBS.log for details
+[2025-06-14 17:13:02] [INFO] Step 3: Checking PowerShell Module Store...
+[2025-06-14 17:13:02] [SUCCESS] System PowerShell modules path exists: True
+[2025-06-14 17:13:02] [SUCCESS] User PowerShell modules path exists: True
+[2025-06-14 17:13:02] [INFO] Current PowerShell Execution Policy: RemoteSigned
+[2025-06-14 17:13:02] [INFO] Step 4: Checking .NET Framework Installation...
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: v2.0.50727 - Version: 2.0.50727.4927
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 1033 - Version: 2.0.50727.4927
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 3082 - Version: 2.0.50727.4927
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: v3.0 - Version: 3.0.30729.4926
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: Setup - Version: 3.0.30729.4926
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 1033 - Version: 3.0.30729.4926
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 3082 - Version: 3.0.30729.8795
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: Windows Communication Foundation - Version: 3.0.4506.4926
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: Windows Presentation Foundation - Version: 3.0.6920.4902
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: v3.5 - Version: 3.5.30729.4926
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 1033 - Version: 3.5.30729.4926
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 3082 - Version: 3.5.30729.5003
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: Client - Version: 4.8.09032
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 1033 - Version: 4.8.09032
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 3082 - Version: 4.8.09032
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: Full - Version: 4.8.09032
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 1033 - Version: 4.8.09032
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: 3082 - Version: 4.8.09032
+[2025-06-14 17:13:02] [SUCCESS] .NET Framework found: Client - Version: 4.0.0.0
+[2025-06-14 17:13:04] [SUCCESS] .NET Core/5+ found: Version 9.0.301
+[2025-06-14 17:13:04] [INFO] Step 5: Checking Critical Registry Hives...
+[2025-06-14 17:13:04] [SUCCESS] Registry hive 'HKLM:\SYSTEM' accessible: True
+[2025-06-14 17:13:04] [SUCCESS] Registry hive 'HKLM:\SOFTWARE' accessible: True
+[2025-06-14 17:13:04] [SUCCESS] Registry hive 'HKLM:\SECURITY' accessible: True
+[2025-06-14 17:13:04] [SUCCESS] Registry hive 'HKLM:\SAM' accessible: True
+[2025-06-14 17:13:04] [SUCCESS] Registry hive 'HKCU:\SOFTWARE' accessible: True
+[2025-06-14 17:13:04] [INFO] Step 6: Checking WinSxS Component Store...
+[2025-06-14 17:13:10] [SUCCESS] WinSxS component store found - Size: 7.99 GB
+[2025-06-14 17:13:11] [SUCCESS] Component manifests found: 26212
+[2025-06-14 17:13:11] [INFO] Step 7: Emergency COM Component Registration...
+[2025-06-14 17:13:12] [SUCCESS] Re-registered ole32.dll successfully
+[2025-06-14 17:13:13] [SUCCESS] Re-registered oleaut32.dll successfully
+[2025-06-14 17:13:14] [SUCCESS] Re-registered shell32.dll successfully
+[2025-06-14 17:13:15] [ERROR] Failed to re-register comctl32.dll (Exit Code: 4)
+[2025-06-14 17:13:16] [SUCCESS] Re-registered msxml6.dll successfully
+[2025-06-14 17:13:17] [SUCCESS] Re-registered msxml3.dll successfully
+[2025-06-14 17:13:17] [INFO] === 0x8a15000f EMERGENCY FIX COMPLETED ===
+[2025-06-14 17:13:17] [INFO] Log saved to: .\fix_0x8a15000f_20250614_170908.log
+[2025-06-14 17:13:17] [WARNING] RECOMMENDATION: Restart system after repairs complete

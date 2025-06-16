@@ -1,0 +1,54 @@
+{
+  "ThreatContext": {
+    "CompromisedAreas": [
+      "startup locations",
+      "scheduled tasks",
+      "explorer shell",
+      "system integrity"
+    ],
+    "MalwareThreats": [
+      "Backdoor.Agent.E",
+      "Trojan.Tasker"
+    ],
+    "RecoveryPhases": [
+      "Phase 1: Emergency Malware Cleanup",
+      "Phase 2: Security Hardening & System Recovery",
+      "Phase 3: Azure AI Development Environment Restoration"
+    ]
+  },
+  "SystemInfo": {
+    "ComputerName": "SLAY_STATION",
+    "ExecutionMode": "Automated",
+    "PowerShellVersion": "7.5.1",
+    "WindowsVersion": "Microsoft Windows 11 Pro Insider Preview"
+  },
+  "ExecutionSummary": {
+    "FailedScripts": 1,
+    "SuccessRate": "0%",
+    "EndTime": "2025-06-14 11:47:51",
+    "SuccessfulScripts": 0,
+    "StartTime": "2025-06-14 11:45:46",
+    "CriticalErrors": [],
+    "ValidationOnly": {
+      "IsPresent": false
+    },
+    "TotalDuration": "2.1 minutes",
+    "TotalScripts": 1
+  },
+  "PhaseResults": {
+    "Phase0": {
+      "Critical": true,
+      "Duration": 2.0141775633333334,
+      "Success": false,
+      "ScriptResults": {
+        "shell_com_diagnostic.ps1": {
+          "ExitCode": -2,
+          "Duration": 120,
+          "Error": "Timeout after 120 seconds",
+          "Success": false
+        }
+      },
+      "Name": "Emergency Service Repairs"
+    }
+  }
+}

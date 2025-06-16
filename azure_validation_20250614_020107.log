@@ -1,0 +1,66 @@
+[2025-06-14 02:01:07] [INFO] === AZURE AI ENVIRONMENT VALIDATION STARTED ===
+[2025-06-14 02:01:07] [INFO] Log file: .\azure_validation_20250614_020107.log
+[2025-06-14 02:01:07] [INFO] Testing Azure CLI installation and configuration...
+[2025-06-14 02:01:10] [SUCCESS] Azure CLI is installed
+[2025-06-14 02:01:10] [INFO] Validating Azure authentication and subscription access...
+[2025-06-14 02:01:12] [SUCCESS] Azure authentication successful
+[2025-06-14 02:01:12] [INFO] Logged in as: CSTEWART13@art.edu
+[2025-06-14 02:01:12] [INFO] Current subscription: Azure subscription 1 (831ed202-1c08-4b14-91eb-19ee3e5b3c78)
+[2025-06-14 02:01:12] [SUCCESS] Correct subscription is active
+[2025-06-14 02:01:12] [INFO] Testing Azure OpenAI connectivity...
+[2025-06-14 02:01:13] [SUCCESS] Network connectivity to Azure OpenAI endpoint successful
+[2025-06-14 02:01:18] [SUCCESS] Azure OpenAI resource found: midnight
+[2025-06-14 02:01:18] [INFO] Resource location: eastus
+[2025-06-14 02:01:18] [INFO] Provisioning state: Succeeded
+[2025-06-14 02:01:24] [SUCCESS] Found 1 OpenAI deployment(s):
+[2025-06-14 02:01:24] [INFO]   - gpt-4o: gpt-4o v2024-11-20
+[2025-06-14 02:01:24] [INFO] Validating Azure ML workspace access...
+[2025-06-14 02:01:40] [SUCCESS] Azure ML workspace 'midnight' found
+[2025-06-14 02:01:40] [INFO] Workspace location: eastus
+[2025-06-14 02:01:40] [INFO] Discovery URL: https://eastus.api.azureml.ms/discovery
+[2025-06-14 02:01:40] [INFO] Validating Python virtual environment...
+[2025-06-14 02:01:40] [SUCCESS] Virtual environment directory found: .\azure-ai-envsource
+[2025-06-14 02:01:40] [INFO] Virtual environment configuration:
+[2025-06-14 02:01:40] [INFO]   home = C:\Program Files\Python312
+[2025-06-14 02:01:40] [INFO]   include-system-site-packages = false
+[2025-06-14 02:01:40] [INFO]   version = 3.12.10
+[2025-06-14 02:01:40] [INFO]   executable = C:\Program Files\Python312\python.exe
+[2025-06-14 02:01:40] [INFO]   command = C:\Program Files\Python312\python.exe -m venv C:\FixMyShit\azure-ai-envsource
+[2025-06-14 02:01:40] [SUCCESS] Python executable found in virtual environment
+[2025-06-14 02:01:40] [INFO] Python version: Python 3.12.10
+[2025-06-14 02:01:40] [INFO] Validating Azure Python packages...
+[2025-06-14 02:01:42] [SUCCESS] Package 'openai' is installed
+[2025-06-14 02:01:43] [SUCCESS] Package 'azure-identity' is installed
+[2025-06-14 02:01:44] [SUCCESS] Package 'azure-ai-projects' is installed
+[2025-06-14 02:01:45] [SUCCESS] Package 'azure-core' is installed
+[2025-06-14 02:01:46] [SUCCESS] Package 'azure-keyvault-secrets' is installed
+[2025-06-14 02:01:46] [SUCCESS] All required Python packages are installed
+[2025-06-14 02:01:46] [INFO] Validating Azure Python scripts...
+[2025-06-14 02:01:46] [SUCCESS] Script found: azure.py
+[2025-06-14 02:01:47] [SUCCESS] Script syntax validation passed: azure.py
+[2025-06-14 02:01:47] [SUCCESS] Script found: deploy_agent.py
+[2025-06-14 02:01:47] [SUCCESS] Script syntax validation passed: deploy_agent.py
+[2025-06-14 02:01:47] [INFO] Validating MCP server configuration...
+[2025-06-14 02:01:47] [SUCCESS] MCP server directory found: .\azure-ai-mcp-server
+[2025-06-14 02:01:47] [SUCCESS] MCP server package.json found
+[2025-06-14 02:01:47] [SUCCESS] MCP server TypeScript source found
+[2025-06-14 02:01:47] [SUCCESS] Node.js is available: v22.16.0
+[2025-06-14 02:01:52] [INFO] Performing credential security validation...
+[2025-06-14 02:01:52] [SUCCESS] No obvious credential security issues found
+[2025-06-14 02:01:52] [INFO] === AZURE ENVIRONMENT VALIDATION REPORT ===
+[2025-06-14 02:01:52] [INFO] Overall Success Rate: 10/10 (100%)
+[2025-06-14 02:01:52] [INFO] 
+[2025-06-14 02:01:52] [SUCCESS] MLWorkspace: PASS
+[2025-06-14 02:01:52] [SUCCESS] AzureScripts: PASS
+[2025-06-14 02:01:52] [SUCCESS] MCPServer: PASS
+[2025-06-14 02:01:52] [SUCCESS] PythonPackages: PASS
+[2025-06-14 02:01:52] [SUCCESS] OpenAIConnectivity: PASS
+[2025-06-14 02:01:52] [SUCCESS] AzureCLI: PASS
+[2025-06-14 02:01:52] [SUCCESS] PythonEnvironment: PASS
+[2025-06-14 02:01:52] [SUCCESS] CredentialSecurity: PASS
+[2025-06-14 02:01:52] [SUCCESS] NetworkConnectivity: PASS
+[2025-06-14 02:01:52] [SUCCESS] AzureAuth: PASS
+[2025-06-14 02:01:52] [INFO] 
+[2025-06-14 02:01:52] [INFO] === AZURE AI ENVIRONMENT VALIDATION COMPLETED ===
+[2025-06-14 02:01:52] [INFO] Detailed log saved to: .\azure_validation_20250614_020107.log
+[2025-06-14 02:01:52] [SUCCESS] Environment validation PASSED with 100% success rate

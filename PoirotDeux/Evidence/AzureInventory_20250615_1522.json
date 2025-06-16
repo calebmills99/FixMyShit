@@ -1,0 +1,20 @@
+﻿{
+    "Cognitive Services":  {
+
+                           },
+    "Log Analytics":  {
+
+                      },
+    "Storage Accounts":  {
+
+                         },
+    "App Insights":  {
+
+                     },
+    "Key Vaults":  {
+                       "value":  [
+
+                                 ],
+                       "Count":  0
+                   }
+}

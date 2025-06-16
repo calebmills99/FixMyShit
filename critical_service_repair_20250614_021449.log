@@ -1,0 +1,7 @@
+[2025-06-14 02:14:49] [INFO] === CRITICAL SERVICE REPAIR STARTED ===
+[2025-06-14 02:14:49] [INFO] Checking and repairing 26 critical services...
+[2025-06-14 02:14:50] [INFO] Service: Windows Defender Firewall
+[2025-06-14 02:14:50] [INFO]   Current Status: StartPending
+[2025-06-14 02:14:50] [INFO]   Current StartMode: Auto
+[2025-06-14 02:14:50] [INFO]   Required StartMode: Automatic
+[2025-06-14 02:14:50] [WARNING]   STARTING service...

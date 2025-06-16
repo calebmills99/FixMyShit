@@ -1,0 +1,158 @@
+{
+  "Detective Script Header": {
+    "prefix": "detective-header",
+    "body": [
+      "# ${1:Script Purpose}",
+      "# By Hercule Poirot 2.0",
+      "# Case File: ${2:AZURE-001}",
+      "# Date: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "",
+      "Write-Host \"${3:INVESTIGATION TITLE}\" -ForegroundColor Cyan",
+      "Write-Host \"${'='*${3/./=/g}}\" -ForegroundColor Cyan",
+      "Write-Host \"\"",
+      "$0"
+    ],
+    "description": "Creates a detective-themed PowerShell script header"
+  },
+  
+  "Investigation Status": {
+    "prefix": "investigate",
+    "body": [
+      "Write-Host \"[INVESTIGATING] ${1:Checking resource status}...\" -ForegroundColor Yellow",
+      "$0"
+    ],
+    "description": "Investigation status message"
+  },
+  
+  "Success Message": {
+    "prefix": "success",
+    "body": [
+      "Write-Host \"[SUCCESS] ${1:Operation completed}!\" -ForegroundColor Green",
+      "$0"
+    ],
+    "description": "Success status message"
+  },
+  
+  "Error Handler": {
+    "prefix": "detective-error",
+    "body": [
+      "try {",
+      "    ${1:# Operation}",
+      "} catch {",
+      "    Write-Host \"[ERROR] Mon ami, we have a problem: \\$_\" -ForegroundColor Red",
+      "    Write-Host \"The little grey cells suggest checking:\" -ForegroundColor Yellow",
+      "    Write-Host \"  1. ${2:First thing to check}\" -ForegroundColor White",
+      "    Write-Host \"  2. ${3:Second thing to check}\" -ForegroundColor White",
+      "    Write-Host \"  3. ${4:Third thing to check}\" -ForegroundColor White",
+      "}",
+      "$0"
+    ],
+    "description": "Detective-style error handling"
+  },
+  
+  "Azure Context Check": {
+    "prefix": "check-context",
+    "body": [
+      "# Ensure we're in the right subscription",
+      "Write-Host \"[STEP 1] Verifying Azure context...\" -ForegroundColor Yellow",
+      "\\$targetSubscriptionId = \"831ed202-1c08-4b14-91eb-19ee3e5b3c78\"",
+      "Set-AzContext -SubscriptionId \\$targetSubscriptionId | Out-Null",
+      "\\$context = Get-AzContext",
+      "Write-Host \"Connected as: \\$(\\$context.Account.Id)\" -ForegroundColor Green",
+      "Write-Host \"Subscription: \\$(\\$context.Subscription.Name)\" -ForegroundColor Green",
+      "$0"
+    ],
+    "description": "Standard Azure context verification"
+  },
+  
+  "Resource Check": {
+    "prefix": "check-resource",
+    "body": [
+      "\\$${1:resourceName} = Get-AzResource -ResourceGroupName \"guardr\" -Name \"${2:resource-name}\" -ErrorAction SilentlyContinue",
+      "",
+      "if (\\$${1:resourceName}) {",
+      "    Write-Host \"[EXISTS] ${3:Resource type}: \\$(\\$${1:resourceName}.Name)\" -ForegroundColor Green",
+      "} else {",
+      "    Write-Host \"[MISSING] ${3:Resource type}: ${2:resource-name}\" -ForegroundColor Red",
+      "}",
+      "$0"
+    ],
+    "description": "Check if Azure resource exists"
+  },
+  
+  "Bicep Template": {
+    "prefix": "bicep-detective",
+    "body": [
+      "// ${1:Resource Description}",
+      "// Part of the Azure Detective Agency Infrastructure",
+      "// Location: guardr resource group",
+      "",
+      "@description('${2:Parameter description}')",
+      "param ${3:parameterName} string = '${4:defaultValue}'",
+      "",
+      "resource ${5:resourceName} '${6:Microsoft.Provider/resourceType}@${7:2023-01-01}' = {",
+      "  name: ${3:parameterName}",
+      "  location: resourceGroup().location",
+      "  properties: {",
+      "    $0",
+      "  }",
+      "}",
+      "",
+      "output ${5:resourceName}Id string = ${5:resourceName}.id"
+    ],
+    "description": "Bicep resource template"
+  },
+  
+  "Function App Code": {
+    "prefix": "function-detective",
+    "body": [
+      "using namespace System.Net",
+      "",
+      "# Input bindings are passed in via param block.",
+      "param(\\$Request, \\$TriggerMetadata)",
+      "",
+      "# Detective Poirot 2.0 - ${1:Function Purpose}",
+      "Write-Host \"Detective function activated: ${2:FunctionName}\"",
+      "",
+      "# Parse the request",
+      "\\$caseData = @{",
+      "    timestamp = Get-Date -Format \"yyyy-MM-dd HH:mm:ss\"",
+      "    requestId = [guid]::NewGuid().ToString()",
+      "    detective = \"Poirot 2.0\"",
+      "    ${3:data = \\$Request.Body}",
+      "}",
+      "",
+      "# The little grey cells process the evidence",
+      "\\$response = @{",
+      "    status = \"${4:Success}\"",
+      "    message = \"${5:The investigation continues}\"",
+      "    caseId = \\$caseData.requestId",
+      "}",
+      "",
+      "# Return the response",
+      "Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{",
+      "    StatusCode = [HttpStatusCode]::OK",
+      "    Body = \\$response | ConvertTo-Json",
+      "})",
+      "$0"
+    ],
+    "description": "Azure Function detective template"
+  },
+  
+  "Git Commit Message": {
+    "prefix": "commit-detective",
+    "body": [
+      "${1|The Case of,The Mystery of,The Adventure of|} ${2:the Missing Function App} - ${3|SOLVED,INVESTIGATING,EVIDENCE FOUND,DEPLOYED|}",
+      "",
+      "Mon ami, ${4:what we did}:",
+      "- ${5:First change}",
+      "- ${6:Second change}",
+      "- ${7:Third change}",
+      "",
+      "The little grey cells revealed: ${8:key insight}",
+      "",
+      "Case File: ${9:AZURE-001}"
+    ],
+    "description": "Detective-themed commit message"
+  }
+}

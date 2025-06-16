@@ -1,0 +1,32 @@
+{
+    "ComputerName":  "SLAY_STATION",
+    "BackupDate":  "6/14/2025 11:00:57 PM",
+    "Files":  [
+                  {
+                      "Name":  "EventLogConfig.txt",
+                      "Length":  765947,
+                      "LastWriteTime":  "\/Date(1749967257921)\/"
+                  },
+                  {
+                      "Name":  "HKLM_Run.reg",
+                      "Length":  1974,
+                      "LastWriteTime":  "\/Date(1749967201818)\/"
+                  },
+                  {
+                      "Name":  "ScheduledTasks.csv",
+                      "Length":  79062,
+                      "LastWriteTime":  "\/Date(1749967205040)\/"
+                  },
+                  {
+                      "Name":  "SecurityPolicy.inf",
+                      "Length":  17166,
+                      "LastWriteTime":  "\/Date(1749967202490)\/"
+                  },
+                  {
+                      "Name":  "Services.reg",
+                      "Length":  8753154,
+                      "LastWriteTime":  "\/Date(1749967202335)\/"
+                  }
+              ],
+    "WindowsVersion":  "Microsoft Windows 11 Pro Insider Preview"
+}

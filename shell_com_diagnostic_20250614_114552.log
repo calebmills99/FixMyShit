@@ -1,0 +1,15 @@
+[2025-06-14 11:45:52] [INFO] === SHELL AND COM DIAGNOSTIC STARTED ===
+[2025-06-14 11:45:52] [INFO] Log file: .\shell_com_diagnostic_20250614_114552.log
+[2025-06-14 11:45:52] [INFO] Testing PowerShell Core Functionality...
+[2025-06-14 11:45:52] [SUCCESS] PowerShell Version: 7.5.1, Edition: Core
+[2025-06-14 11:45:52] [SUCCESS] Command 'Get-Process' working
+[2025-06-14 11:45:52] [SUCCESS] Command 'Get-Service' working
+[2025-06-14 11:45:54] [SUCCESS] Command 'Get-WmiObject' working
+[2025-06-14 11:45:55] [SUCCESS] Command 'Get-CimInstance' working
+[2025-06-14 11:45:55] [INFO] Testing COM Component Registration...
+[2025-06-14 11:45:55] [SUCCESS] COM 'Shell.Application' registered and functional
+[2025-06-14 11:45:55] [SUCCESS] COM 'Scripting.FileSystemObject' registered and functional
+[2025-06-14 11:45:55] [SUCCESS] COM 'WScript.Shell' registered and functional
+[2025-06-14 11:46:02] [SUCCESS] COM 'Excel.Application' registered and functional
+[2025-06-14 11:46:08] [SUCCESS] COM 'Word.Application' registered and functional
+[2025-06-14 11:46:08] [INFO] Testing Registry Shell Extensions...

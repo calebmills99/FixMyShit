@@ -1,0 +1,75 @@
+# Basic Azure Verification using only Az.Resources
+# Works with minimal Az module installation
+# By Hercule Poirot 2.0
+
+Write-Host "BASIC AZURE VERIFICATION" -ForegroundColor Cyan
+Write-Host "========================" -ForegroundColor Cyan
+Write-Host ""
+
+# Check current context
+$context = Get-AzContext
+Write-Host "Connected as: $($context.Account.Id)" -ForegroundColor Green
+Write-Host "Subscription: $($context.Subscription.Name)" -ForegroundColor Green
+Write-Host ""
+
+# Set correct subscription
+$targetSubscriptionId = "831ed202-1c08-4b14-91eb-19ee3e5b3c78"
+Set-AzContext -SubscriptionId $targetSubscriptionId | Out-Null
+
+# Check resource group
+$rg = Get-AzResourceGroup -Name "guardr"
+Write-Host "Resource Group: $($rg.ResourceGroupName) in $($rg.Location)" -ForegroundColor Green
+Write-Host ""
+
+# List all resources using basic Get-AzResource
+Write-Host "Checking existing resources in guardr..." -ForegroundColor Yellow
+$resources = Get-AzResource -ResourceGroupName "guardr"
+
+# Group by type
+$grouped = $resources | Group-Object ResourceType | Sort-Object Count -Descending
+
+Write-Host "Resource Summary:" -ForegroundColor Cyan
+foreach ($group in $grouped) {
+    Write-Host "  $($group.Count) x $($group.Name)" -ForegroundColor White
+}
+
+Write-Host ""
+Write-Host "Key Resources for Detective Agency:" -ForegroundColor Yellow
+
+# Find specific resources
+$keyVault = $resources | Where-Object { $_.ResourceType -eq "Microsoft.KeyVault/vaults" -and $_.Name -eq "midnightkeyvault03e7c773" }
+$appInsights = $resources | Where-Object { $_.ResourceType -eq "microsoft.insights/components" -and $_.Name -eq "midnightinsightscbd64381" }
+$storage = $resources | Where-Object { $_.ResourceType -eq "Microsoft.Storage/storageAccounts" -and $_.Name -eq "midnightstoragefeedb3dcc" }
+
+if ($keyVault) {
+    Write-Host "  [FOUND] Key Vault: $($keyVault.Name)" -ForegroundColor Green
+} else {
+    Write-Host "  [MISSING] Key Vault: midnightkeyvault03e7c773" -ForegroundColor Red
+}
+
+if ($appInsights) {
+    Write-Host "  [FOUND] App Insights: $($appInsights.Name)" -ForegroundColor Green
+} else {
+    Write-Host "  [MISSING] App Insights: midnightinsightscbd64381" -ForegroundColor Red
+}
+
+if ($storage) {
+    Write-Host "  [FOUND] Storage: $($storage.Name)" -ForegroundColor Green
+} else {
+    Write-Host "  [MISSING] Storage: midnightstoragefeedb3dcc" -ForegroundColor Red
+}
+
+Write-Host ""
+Write-Host "Detective Resources:" -ForegroundColor Yellow
+$detectiveResources = $resources | Where-Object { $_.Name -like "*detective*" }
+if ($detectiveResources) {
+    $detectiveResources | ForEach-Object {
+        Write-Host "  - $($_.Name) [$($_.ResourceType)]" -ForegroundColor White
+    }
+} else {
+    Write-Host "  [NONE] No detective resources found yet" -ForegroundColor Yellow
+}
+
+Write-Host ""
+Write-Host "[READY] Basic verification complete!" -ForegroundColor Green
+Write-Host ""

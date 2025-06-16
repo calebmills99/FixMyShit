@@ -1,0 +1,43 @@
+commit 80727496fc42105c4f50e4aa5b84456686643d75
+Author: Nick Craig-Wood <nick@craig-wood.com>
+Date:   Wed May 21 21:08:44 2025 +0100
+
+    Version v1.69.3
+
+commit a5bd052fb4e11f757bab49f5222cadcfcfe0288e
+Author: Nick Craig-Wood <nick@craig-wood.com>
+Date:   Wed May 21 16:02:19 2025 +0100
+
+    build: update github.com/ebitengine/purego to work around bug in go1.24.3
+    
+    Before this we get this error on darwin/amd64
+    
+    link: duplicated definition of symbol dlopen, from github.com/ebitengine/purego and github.com/ebitengine/purego
+    
+    See: https://github.com/golang/go/issues/73617
+
+commit 538edfeee0727dd4eb877460ae0b5b491b0be0a7
+Author: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+Date:   Sun Apr 6 11:46:13 2025 +0100
+
+    build: reapply update github.com/golang-jwt/jwt/v5 from 5.2.1 to 5.2.2 to fix CVE-2025-30204
+    
+    This commit got accidentally reverted in
+    
+    ef975129a8b7e508 build: bump golang.org/x/net from 0.36.0 to 0.38.0
+    
+    Bumps [github.com/golang-jwt/jwt/v5](https://github.com/golang-jwt/jwt) from 5.2.1 to 5.2.2.
+    - [Release notes](https://github.com/golang-jwt/jwt/releases)
+    - [Changelog](https://github.com/golang-jwt/jwt/blob/main/VERSION_HISTORY.md)
+    - [Commits](https://github.com/golang-jwt/jwt/compare/v5.2.1...v5.2.2)
+    
+    See: https://github.com/golang-jwt/jwt/security/advisories/GHSA-mh63-6h87-95cp
+    See: https://www.cve.org/CVERecord?id=CVE-2025-30204
+    
+    Signed-off-by: dependabot[bot] <support@github.com>
+
+commit 20253fb4dfa6570027db71be225e57b8318705c6
+Author: Nick Craig-Wood <nick@craig-wood.com>
+Date:   Thu May 1 16:41:55 2025 +0100
+
+    Start v1.69.3-DEV development

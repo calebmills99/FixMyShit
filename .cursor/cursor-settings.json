@@ -1,0 +1,55 @@
+{
+  "cursor.cpp.defaultCompiler": "cl.exe",
+  "cursor.chat.defaultModel": "claude-3.5-sonnet",
+  "cursor.general.aiProvider": "anthropic",
+  
+  // Detective Agency Theme
+  "workbench.colorTheme": "Monokai",
+  "workbench.iconTheme": "material-icon-theme",
+  
+  // PowerShell Configuration
+  "powershell.codeFormatting.preset": "Stroustrup",
+  "powershell.integratedConsole.showOnStartup": true,
+  
+  // File Associations
+  "files.associations": {
+    "*.bicep": "bicep",
+    "*.ps1": "powershell",
+    "*.psm1": "powershell",
+    "*.psd1": "powershell"
+  },
+  
+  // Azure Extensions
+  "azure.resourceFilter": [
+    {
+      "subscriptionId": "831ed202-1c08-4b14-91eb-19ee3e5b3c78",
+      "resourceGroup": "guardr"
+    }
+  ],
+  
+  // Custom Snippets Path
+  "cursor.chat.codebaseContext": {
+    "enabled": true,
+    "maxFiles": 20,
+    "fileTypes": [".ps1", ".bicep", ".json", ".md"]
+  },
+  
+  // Terminal Configuration
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell",
+      "args": ["-NoExit", "-Command", "Write-Host 'Detective Poirot 2.0 Azure Terminal Ready!' -ForegroundColor Cyan"]
+    }
+  },
+  
+  // Editor Settings
+  "editor.rulers": [80, 120],
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  
+  // Git commit template
+  "git.inputValidationSubjectLength": 72,
+  "git.inputValidationLength": 500
+}

@@ -1,0 +1,36 @@
+[2025-06-14 01:15:10] [INFO] ========== System Monitoring Setup Started ==========
+[2025-06-14 01:15:10] [INFO] Log file: C:\FixMyShit\setup_monitoring_20250614_011510.log
+[2025-06-14 01:15:10] [INFO] Creating monitoring directory structure...
+[2025-06-14 01:15:10] [INFO] Created directory: C:\FixMyShit\Monitoring
+[2025-06-14 01:15:10] [INFO] Created directory: C:\FixMyShit\Monitoring\Scripts
+[2025-06-14 01:15:10] [INFO] Created directory: C:\FixMyShit\Monitoring\Logs
+[2025-06-14 01:15:10] [INFO] Created directory: C:\FixMyShit\Monitoring\Baselines
+[2025-06-14 01:15:10] [INFO] Created directory: C:\FixMyShit\Monitoring\Alerts
+[2025-06-14 01:15:10] [INFO] Created directory: C:\FixMyShit\Monitoring\Backups
+[2025-06-14 01:15:10] [INFO] Configuring enhanced Windows Event Log monitoring...
+[2025-06-14 01:15:10] [INFO] Increased log size for Security to 2048MB
+[2025-06-14 01:15:10] [INFO] Increased log size for System to 1024MB
+[2025-06-14 01:15:10] [INFO] Increased log size for Application to 1024MB
+[2025-06-14 01:15:10] [INFO] Increased log size for Windows PowerShell to 512MB
+[2025-06-14 01:15:11] [INFO] Increased log size for Microsoft-Windows-PowerShell/Operational to 512MB
+[2025-06-14 01:15:11] [INFO] Applied audit policy: auditpol /set /subcategory:"Process Creation" /success:enable
+[2025-06-14 01:15:11] [INFO] Applied audit policy: auditpol /set /subcategory:"Process Termination" /success:enable
+[2025-06-14 01:15:12] [INFO] Applied audit policy: auditpol /set /subcategory:"File System" /failure:enable
+[2025-06-14 01:15:12] [INFO] Applied audit policy: auditpol /set /subcategory:"Registry" /failure:enable
+[2025-06-14 01:15:12] [INFO] Applied audit policy: auditpol /set /subcategory:"Sensitive Privilege Use" /success:enable /failure:enable
+[2025-06-14 01:15:12] [INFO] Applied audit policy: auditpol /set /subcategory:"Special Logon" /success:enable
+[2025-06-14 01:15:12] [INFO] Creating real-time monitoring PowerShell script blocks...
+[2025-06-14 01:15:12] [INFO] Real-time monitoring script created: C:\FixMyShit\Monitoring\Scripts\realtime_monitor.ps1
+[2025-06-14 01:15:12] [INFO] Setting up network connection monitoring alerts...
+[2025-06-14 01:15:12] [INFO] Network monitoring script created: C:\FixMyShit\Monitoring\Scripts\network_monitor.ps1
+[2025-06-14 01:15:12] [INFO] Creating monitoring dashboard script...
+[2025-06-14 01:15:12] [INFO] Monitoring dashboard created: C:\FixMyShit\Monitoring\Scripts\monitoring_dashboard.ps1
+[2025-06-14 01:15:12] [INFO] Skipping scheduled task creation as requested
+[2025-06-14 01:15:12] [INFO] Configuring file integrity monitoring for critical system areas...
+[2025-06-14 01:15:12] [INFO] File integrity monitoring script created: C:\FixMyShit\Monitoring\Scripts\file_integrity_monitor.ps1
+[2025-06-14 01:15:13] [INFO] File integrity monitoring scheduled for daily execution at 3:00 AM
+[2025-06-14 01:15:13] [INFO] Establishing automated backup schedule for critical system settings...
+[2025-06-14 01:15:13] [INFO] Backup script created: C:\FixMyShit\Monitoring\Scripts\system_backup.ps1
+[2025-06-14 01:15:13] [INFO] Weekly backup scheduled for Saturdays at 11:00 PM
+[2025-06-14 01:15:13] [INFO] Establishing baseline configurations for future comparison...
+[2025-06-14 01:15:13] [INFO] Baseline script created: C:\FixMyShit\Monitoring\Scripts\create_baseline.ps1

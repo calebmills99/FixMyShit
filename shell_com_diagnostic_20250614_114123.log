@@ -1,0 +1,6 @@
+[2025-06-14 11:41:23] [INFO] === SHELL AND COM DIAGNOSTIC STARTED ===
+[2025-06-14 11:41:23] [INFO] Log file: .\shell_com_diagnostic_20250614_114123.log
+[2025-06-14 11:41:23] [INFO] Testing PowerShell Core Functionality...
+[2025-06-14 11:41:23] [SUCCESS] PowerShell Version: 7.5.1, Edition: Core
+[2025-06-14 11:41:23] [SUCCESS] Command 'Get-Process' working
+[2025-06-14 11:41:23] [SUCCESS] Command 'Get-Service' working
