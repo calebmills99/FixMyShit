@@ -1,7 +1,7 @@
 use clap::Parser;
 use colored::*;
 use humansize::{format_size, BINARY};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::fs;
 use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
@@ -76,7 +76,8 @@ fn main() {
     println!("{}", "─".repeat(70).cyan());
     println!();
 
-    print_tree(&folder, 0, &mut HashMap::new());
+    let mut visited = HashSet::new();
+    print_tree(&folder, 0, &mut HashMap::new(), &mut visited);
     println!();
 
     // Phase 3: List files by size
@@ -138,13 +139,15 @@ fn main() {
 }
 
 /// Recursively delete empty folders from the bottom up
+/// In dry-run mode, simulates cascading deletions to show accurate preview
 fn delete_empty_folders(root: &Path, dry_run: bool) -> Vec<PathBuf> {
     let mut deleted = Vec::new();
     let mut dirs: Vec<PathBuf> = Vec::new();
 
-    // Collect all directories
+    // Collect all directories (don't follow symlinks)
     for entry in WalkDir::new(root)
         .min_depth(1)
+        .follow_links(false)
         .into_iter()
         .filter_map(|e| e.ok())
     {
@@ -160,10 +163,21 @@ fn delete_empty_folders(root: &Path, dry_run: bool) -> Vec<PathBuf> {
         depth_b.cmp(&depth_a)
     });
 
+    // Track virtually deleted directories for dry-run cascade simulation
+    let mut virtually_deleted: HashSet<PathBuf> = HashSet::new();
+
     // Delete empty directories
     for dir in dirs {
-        if is_dir_empty(&dir) {
+        let is_empty = if dry_run {
+            // In dry-run mode, check if empty considering virtually deleted children
+            is_dir_empty_simulated(&dir, &virtually_deleted)
+        } else {
+            is_dir_empty(&dir)
+        };
+
+        if is_empty {
             if dry_run {
+                virtually_deleted.insert(dir.clone());
                 deleted.push(dir);
             } else {
                 match fs::remove_dir(&dir) {
@@ -185,9 +199,34 @@ fn is_dir_empty(path: &Path) -> bool {
     }
 }
 
-/// Print a directory tree
-fn print_tree(path: &Path, depth: usize, last_at_depth: &mut HashMap<usize, bool>) {
-    let name = path.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_else(|| path.display().to_string());
+/// Check if a directory would be empty after simulated deletions (for dry-run cascade)
+fn is_dir_empty_simulated(path: &Path, virtually_deleted: &HashSet<PathBuf>) -> bool {
+    match fs::read_dir(path) {
+        Ok(entries) => {
+            for entry in entries.filter_map(|e| e.ok()) {
+                let entry_path = entry.path();
+                // If this entry hasn't been virtually deleted, directory is not empty
+                if !virtually_deleted.contains(&entry_path) {
+                    return false;
+                }
+            }
+            true
+        }
+        Err(_) => false,
+    }
+}
+
+/// Print a directory tree (with symlink loop protection)
+fn print_tree(
+    path: &Path,
+    depth: usize,
+    last_at_depth: &mut HashMap<usize, bool>,
+    visited: &mut HashSet<PathBuf>,
+) {
+    let name = path
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_else(|| path.display().to_string());
 
     // Build the prefix
     let mut prefix = String::new();
@@ -198,25 +237,39 @@ fn print_tree(path: &Path, depth: usize, last_at_depth: &mut HashMap<usize, bool
             } else {
                 prefix.push_str("├── ");
             }
+        } else if *last_at_depth.get(&d).unwrap_or(&false) {
+            prefix.push_str("    ");
         } else {
-            if *last_at_depth.get(&d).unwrap_or(&false) {
-                prefix.push_str("    ");
-            } else {
-                prefix.push_str("│   ");
-            }
+            prefix.push_str("│   ");
         }
     }
 
-    if path.is_dir() {
-        println!("{}{}/", prefix, name.blue().bold());
-    } else {
-        let size = fs::metadata(path).map(|m| m.len()).unwrap_or(0);
-        let size_str = format!("({})", format_size(size, BINARY));
-        println!("{}{} {}", prefix, name, size_str.dimmed());
+    // Use symlink_metadata to check if this is a symlink (don't follow it)
+    let metadata = fs::symlink_metadata(path);
+    let is_symlink = metadata.as_ref().map(|m| m.file_type().is_symlink()).unwrap_or(false);
+    let is_dir = metadata.as_ref().map(|m| m.file_type().is_dir()).unwrap_or(false);
+
+    if is_symlink {
+        // Show symlinks but don't follow them
+        let target = fs::read_link(path)
+            .map(|t| format!(" -> {}", t.display()))
+            .unwrap_or_default();
+        println!("{}{}{} {}", prefix, name, target, "(symlink)".dimmed());
+        return;
     }
 
-    // If it's a directory, recurse into children
-    if path.is_dir() {
+    if is_dir {
+        // Check for loops using canonical path
+        if let Ok(canonical) = path.canonicalize() {
+            if visited.contains(&canonical) {
+                println!("{}{}/  {}", prefix, name.blue().bold(), "(recursive, skipped)".yellow());
+                return;
+            }
+            visited.insert(canonical);
+        }
+
+        println!("{}{}/", prefix, name.blue().bold());
+
         let mut entries: Vec<_> = fs::read_dir(path)
             .ok()
             .map(|rd| rd.filter_map(|e| e.ok()).collect())
@@ -237,8 +290,12 @@ fn print_tree(path: &Path, depth: usize, last_at_depth: &mut HashMap<usize, bool
         for (i, entry) in entries.iter().enumerate() {
             let is_last = i == count - 1;
             last_at_depth.insert(depth, is_last);
-            print_tree(&entry.path(), depth + 1, last_at_depth);
+            print_tree(&entry.path(), depth + 1, last_at_depth, visited);
         }
+    } else {
+        let size = metadata.map(|m| m.len()).unwrap_or(0);
+        let size_str = format!("({})", format_size(size, BINARY));
+        println!("{}{} {}", prefix, name, size_str.dimmed());
     }
 }
 
