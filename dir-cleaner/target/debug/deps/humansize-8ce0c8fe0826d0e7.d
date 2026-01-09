@@ -1,0 +1,12 @@
+/workspace/dir-cleaner/target/debug/deps/libhumansize-8ce0c8fe0826d0e7.rmeta: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/options/mod.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/options/defaults.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/numeric_traits.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/scales.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/utils.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/allocating.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/formatters.rs
+
+/workspace/dir-cleaner/target/debug/deps/humansize-8ce0c8fe0826d0e7.d: /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/lib.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/options/mod.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/options/defaults.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/numeric_traits.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/scales.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/utils.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/allocating.rs /usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/formatters.rs
+
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/lib.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/options/mod.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/options/defaults.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/numeric_traits.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/scales.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/utils.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/allocating.rs:
+/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/humansize-2.1.3/src/formatters.rs:

@@ -1,0 +1,11 @@
+[package]
+name = "dir-cleaner"
+version = "0.1.0"
+edition = "2021"
+description = "Recursively deletes empty folders and generates a report with directory tree and files sorted by size"
+
+[dependencies]
+walkdir = "2.5"
+clap = { version = "4.5", features = ["derive"] }
+humansize = "2.1"
+colored = "2.1"
