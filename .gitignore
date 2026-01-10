@@ -6,3 +6,7 @@ __pycache__/
 *.pyc
 .vscode/
 local.settings.json
+
+# Rust
+target/
+Cargo.lock
