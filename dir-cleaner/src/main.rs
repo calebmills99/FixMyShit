@@ -1,8 +1,10 @@
+use chrono::Local;
 use clap::Parser;
 use colored::*;
 use humansize::{format_size, BINARY};
 use std::collections::{HashMap, HashSet};
-use std::fs;
+use std::fs::{self, File};
+use std::io::{self, Write};
 use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 
@@ -25,6 +27,33 @@ struct FileInfo {
     size: u64,
 }
 
+/// A writer that writes to both stdout and a file
+struct TeeWriter {
+    file: File,
+}
+
+impl TeeWriter {
+    fn new(file: File) -> Self {
+        TeeWriter { file }
+    }
+
+    fn write_line(&mut self, line: &str) -> io::Result<()> {
+        println!("{}", line);
+        writeln!(self.file, "{}", strip_ansi_codes(line))
+    }
+
+    fn write_empty_line(&mut self) -> io::Result<()> {
+        println!();
+        writeln!(self.file)
+    }
+}
+
+/// Strip ANSI color codes from a string for plain text log output
+fn strip_ansi_codes(s: &str) -> String {
+    let re = regex::Regex::new(r"\x1b\[[0-9;]*m").unwrap();
+    re.replace_all(s, "").to_string()
+}
+
 fn main() {
     let args = Args::parse();
 
@@ -40,71 +69,86 @@ fn main() {
 
     let folder = args.folder.canonicalize().unwrap_or(args.folder.clone());
 
-    println!("{}", "═".repeat(70).cyan());
-    println!("{}", " Directory Cleaner Report ".cyan().bold());
-    println!("{}", "═".repeat(70).cyan());
-    println!();
-    println!("{} {:?}", "Target folder:".yellow().bold(), folder);
-    println!("{} {}", "Dry run:".yellow().bold(), args.dry_run);
-    println!();
+    // Create log file in the target directory
+    let timestamp = Local::now().format("%Y%m%d_%H%M%S");
+    let log_filename = format!("dir-cleaner-report_{}.log", timestamp);
+    let log_path = folder.join(&log_filename);
+    
+    let log_file = match File::create(&log_path) {
+        Ok(f) => f,
+        Err(e) => {
+            eprintln!("{} Failed to create log file {:?}: {}", "Error:".red().bold(), log_path, e);
+            std::process::exit(1);
+        }
+    };
+
+    let mut writer = TeeWriter::new(log_file);
+
+    writer.write_line(&"═".repeat(70)).unwrap();
+    writer.write_line(" Directory Cleaner Report ").unwrap();
+    writer.write_line(&"═".repeat(70)).unwrap();
+    writer.write_empty_line().unwrap();
+    writer.write_line(&format!("Target folder: {:?}", folder)).unwrap();
+    writer.write_line(&format!("Dry run: {}", args.dry_run)).unwrap();
+    writer.write_line(&format!("Log file: {:?}", log_path)).unwrap();
+    writer.write_empty_line().unwrap();
 
     // Phase 1: Delete empty folders
-    println!("{}", "─".repeat(70).cyan());
-    println!("{}", " Phase 1: Removing Empty Folders ".cyan().bold());
-    println!("{}", "─".repeat(70).cyan());
-    println!();
+    writer.write_line(&"─".repeat(70)).unwrap();
+    writer.write_line(" Phase 1: Removing Empty Folders ").unwrap();
+    writer.write_line(&"─".repeat(70)).unwrap();
+    writer.write_empty_line().unwrap();
 
     let deleted_folders = delete_empty_folders(&folder, args.dry_run);
 
     if deleted_folders.is_empty() {
-        println!("{}", "No empty folders found.".green());
+        writer.write_line("No empty folders found.").unwrap();
     } else {
-        println!(
+        writer.write_line(&format!(
             "{} {} empty folder(s):",
-            if args.dry_run { "Would delete" } else { "Deleted" }.yellow().bold(),
+            if args.dry_run { "Would delete" } else { "Deleted" },
             deleted_folders.len()
-        );
+        )).unwrap();
         for folder in &deleted_folders {
-            println!("  {} {:?}", "×".red(), folder);
+            writer.write_line(&format!("  × {:?}", folder)).unwrap();
         }
     }
-    println!();
+    writer.write_empty_line().unwrap();
 
     // Phase 2: Generate directory tree
-    println!("{}", "─".repeat(70).cyan());
-    println!("{}", " Phase 2: Directory Tree ".cyan().bold());
-    println!("{}", "─".repeat(70).cyan());
-    println!();
+    writer.write_line(&"─".repeat(70)).unwrap();
+    writer.write_line(" Phase 2: Directory Tree ").unwrap();
+    writer.write_line(&"─".repeat(70)).unwrap();
+    writer.write_empty_line().unwrap();
 
     let mut visited = HashSet::new();
-    print_tree(&folder, 0, &mut HashMap::new(), &mut visited);
-    println!();
+    let mut tree_output = Vec::new();
+    print_tree_to_vec(&folder, 0, &mut HashMap::new(), &mut visited, &mut tree_output);
+    for line in &tree_output {
+        writer.write_line(line).unwrap();
+    }
+    writer.write_empty_line().unwrap();
 
     // Phase 3: List files by size
-    println!("{}", "─".repeat(70).cyan());
-    println!("{}", " Phase 3: Files by Size (Largest → Smallest) ".cyan().bold());
-    println!("{}", "─".repeat(70).cyan());
-    println!();
+    writer.write_line(&"─".repeat(70)).unwrap();
+    writer.write_line(" Phase 3: Files by Size (Largest → Smallest) ").unwrap();
+    writer.write_line(&"─".repeat(70)).unwrap();
+    writer.write_empty_line().unwrap();
 
     let files = collect_files(&folder);
 
     if files.is_empty() {
-        println!("{}", "No files found.".yellow());
+        writer.write_line("No files found.").unwrap();
     } else {
         let total_size: u64 = files.iter().map(|f| f.size).sum();
-        println!(
-            "{} {} files, {} total",
-            "Found:".green().bold(),
+        writer.write_line(&format!(
+            "Found: {} files, {} total",
             files.len(),
-            format_size(total_size, BINARY).cyan()
-        );
-        println!();
-        println!(
-            "{:>14}  {}",
-            "Size".underline().bold(),
-            "File Path".underline().bold()
-        );
-        println!("{}", "─".repeat(70));
+            format_size(total_size, BINARY)
+        )).unwrap();
+        writer.write_empty_line().unwrap();
+        writer.write_line(&format!("{:>14}  {}", "Size", "File Path")).unwrap();
+        writer.write_line(&"─".repeat(70)).unwrap();
 
         for file in &files {
             let size_str = format_size(file.size, BINARY);
@@ -114,28 +158,20 @@ fn main() {
                 .unwrap_or(&file.path)
                 .display();
             
-            // Color code by size
-            let size_colored = if file.size > 100_000_000 {
-                // > 100MB
-                format!("{:>14}", size_str).red().bold()
-            } else if file.size > 10_000_000 {
-                // > 10MB
-                format!("{:>14}", size_str).yellow()
-            } else if file.size > 1_000_000 {
-                // > 1MB
-                format!("{:>14}", size_str).blue()
-            } else {
-                format!("{:>14}", size_str).normal()
-            };
-
-            println!("{}  {}", size_colored, relative_path);
+            writer.write_line(&format!("{:>14}  {}", size_str, relative_path)).unwrap();
         }
     }
 
+    writer.write_empty_line().unwrap();
+    writer.write_line(&"═".repeat(70)).unwrap();
+    writer.write_line(" Report Complete ").unwrap();
+    writer.write_line(&"═".repeat(70)).unwrap();
+    writer.write_empty_line().unwrap();
+    writer.write_line(&format!("Report saved to: {:?}", log_path)).unwrap();
+
+    // Also print with colors for terminal
     println!();
-    println!("{}", "═".repeat(70).cyan());
-    println!("{}", " Report Complete ".green().bold());
-    println!("{}", "═".repeat(70).cyan());
+    println!("{} {:?}", "Report saved to:".green().bold(), log_path);
 }
 
 /// Recursively delete empty folders from the bottom up
@@ -216,12 +252,13 @@ fn is_dir_empty_simulated(path: &Path, virtually_deleted: &HashSet<PathBuf>) -> 
     }
 }
 
-/// Print a directory tree (with symlink loop protection)
-fn print_tree(
+/// Print a directory tree to a Vec (with symlink loop protection)
+fn print_tree_to_vec(
     path: &Path,
     depth: usize,
     last_at_depth: &mut HashMap<usize, bool>,
     visited: &mut HashSet<PathBuf>,
+    output: &mut Vec<String>,
 ) {
     let name = path
         .file_name()
@@ -254,7 +291,7 @@ fn print_tree(
         let target = fs::read_link(path)
             .map(|t| format!(" -> {}", t.display()))
             .unwrap_or_default();
-        println!("{}{}{} {}", prefix, name, target, "(symlink)".dimmed());
+        output.push(format!("{}{}{} (symlink)", prefix, name, target));
         return;
     }
 
@@ -262,13 +299,13 @@ fn print_tree(
         // Check for loops using canonical path
         if let Ok(canonical) = path.canonicalize() {
             if visited.contains(&canonical) {
-                println!("{}{}/  {}", prefix, name.blue().bold(), "(recursive, skipped)".yellow());
+                output.push(format!("{}{}/  (recursive, skipped)", prefix, name));
                 return;
             }
             visited.insert(canonical);
         }
 
-        println!("{}{}/", prefix, name.blue().bold());
+        output.push(format!("{}{}/", prefix, name));
 
         let mut entries: Vec<_> = fs::read_dir(path)
             .ok()
@@ -290,12 +327,12 @@ fn print_tree(
         for (i, entry) in entries.iter().enumerate() {
             let is_last = i == count - 1;
             last_at_depth.insert(depth, is_last);
-            print_tree(&entry.path(), depth + 1, last_at_depth, visited);
+            print_tree_to_vec(&entry.path(), depth + 1, last_at_depth, visited, output);
         }
     } else {
         let size = metadata.map(|m| m.len()).unwrap_or(0);
         let size_str = format!("({})", format_size(size, BINARY));
-        println!("{}{} {}", prefix, name, size_str.dimmed());
+        output.push(format!("{}{} {}", prefix, name, size_str));
     }
 }
 

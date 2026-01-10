@@ -37,11 +37,20 @@ dir-cleaner /path/to/folder --dry-run
 
 ## Output
 
-The tool generates a three-phase report:
+The tool generates a three-phase report that is both printed to the console and saved to a log file in the target directory:
 
 1. **Phase 1**: Lists all empty folders that were (or would be) deleted
 2. **Phase 2**: Shows a tree view of the directory structure
 3. **Phase 3**: Lists all files sorted by size (largest first), with total size
+
+### Log File
+
+A timestamped log file is automatically created in the target directory with the format:
+```
+dir-cleaner-report_YYYYMMDD_HHMMSS.log
+```
+
+The log file contains the same information as the console output but without ANSI color codes for better readability in text editors.
 
 ## Example Output
 
